@@ -60,8 +60,8 @@ if ($LASTEXITCODE -ne 0) { throw "Creazione import library ScriptHook V fallita.
     -o $modBinary `
     (Join-Path $modSourceDirectory "GTARemoteBridge.cpp") `
     $importLibrary `
-    -Wl,--subsystem,windows `
-    -Wl,--kill-at
+    "-Wl,--subsystem,windows" `
+    "-Wl,--kill-at"
 if ($LASTEXITCODE -ne 0) { throw "Build di GTARemoteBridge.asi fallita." }
 
 & $InnoSetupCompiler `
