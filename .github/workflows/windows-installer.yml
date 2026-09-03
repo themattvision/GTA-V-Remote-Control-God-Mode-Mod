@@ -78,19 +78,25 @@ jobs:
           $installer = '${{ runner.temp }}\GodModeInstaller\installer\Windows-GodMode-Mod-Remote-Control-Setup-v${{ inputs.version }}.exe'
           $fakeGta = Join-Path '${{ runner.temp }}' 'Fake GTA V'
           $appDirectory = Join-Path '${{ runner.temp }}' 'Installed GodMode Remote'
+          $installLog = Join-Path '${{ runner.temp }}' 'godmode-installer-smoke.log'
           New-Item $fakeGta -ItemType Directory -Force | Out-Null
           @('GTA5.exe', 'ScriptHookV.dll', 'dinput8.dll', 'NativeTrainer.asi') | ForEach-Object {
             Set-Content (Join-Path $fakeGta $_) 'installer-smoke-test'
           }
 
-          $installProcess = Start-Process $installer -ArgumentList @(
+          $installArguments = @(
             '/VERYSILENT',
             '/SUPPRESSMSGBOXES',
             '/NORESTART',
-            "/GTAPath=$fakeGta",
-            "/DIR=$appDirectory"
-          ) -Wait -PassThru
-          if ($installProcess.ExitCode -ne 0) { throw "Installer exited with $($installProcess.ExitCode)" }
+            "/GTAPath=`"$fakeGta`"",
+            "/DIR=`"$appDirectory`"",
+            "/LOG=`"$installLog`""
+          )
+          $installProcess = Start-Process $installer -ArgumentList $installArguments -Wait -PassThru
+          if ($installProcess.ExitCode -ne 0) {
+            if (Test-Path $installLog) { Get-Content $installLog }
+            throw "Installer exited with $($installProcess.ExitCode)"
+          }
           if (-not (Test-Path (Join-Path $appDirectory 'GodMode Mod Remote Control.exe'))) { throw 'Windows app was not installed' }
           if (-not (Test-Path (Join-Path $fakeGta 'GTARemoteBridge.asi'))) { throw 'GTA bridge was not installed' }
 
