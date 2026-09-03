@@ -171,7 +171,7 @@ begin
     'Dove si trova GTA V Legacy?',
     'Seleziona la cartella che contiene GTA5.exe.',
     'L''installer prova a trovarla automaticamente. Se il percorso non è corretto, scegli la cartella principale di GTA V Legacy.',
-    False, False);
+    False, '');
   GtaPage.Add('Cartella di GTA V Legacy:');
   GtaPage.Values[0] := FirstValidGtaDirectory;
 
@@ -240,7 +240,9 @@ end;
 
 function PowerShellQuote(const Value: String): String;
 begin
-  Result := '''' + StringChangeEx(Value, '''', '''''', True) + '''';
+  Result := Value;
+  StringChangeEx(Result, '''', '''''', True);
+  Result := '''' + Result + '''';
 end;
 
 procedure BackupIfPresent(const FileName: String);
