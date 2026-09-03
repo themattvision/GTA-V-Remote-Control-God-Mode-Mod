@@ -15,15 +15,23 @@ $buildDirectory = Join-Path $OutputDirectory "build"
 $publishDirectory = Join-Path $buildDirectory "app"
 $modBuildDirectory = Join-Path $buildDirectory "mod"
 $installerOutputDirectory = Join-Path $OutputDirectory "installer"
-$dllTool = Join-Path $MingwBin "x86_64-w64-mingw32-dlltool.exe"
-$compiler = Join-Path $MingwBin "x86_64-w64-mingw32-g++.exe"
 $importLibrary = Join-Path $modBuildDirectory "libScriptHookV.a"
 $modBinary = Join-Path $modBuildDirectory "GTARemoteBridge.asi"
 
-foreach ($requiredTool in @($dllTool, $compiler, $InnoSetupCompiler)) {
-    if (-not (Test-Path $requiredTool)) {
-        throw "Tool richiesto non trovato: $requiredTool"
+function Resolve-Tool([string]$Directory, [string[]]$Names) {
+    foreach ($name in $Names) {
+        $candidate = Join-Path $Directory $name
+        if (Test-Path $candidate) {
+            return $candidate
+        }
     }
+    throw "Tool richiesto non trovato in $Directory: $($Names -join ', ')"
+}
+
+$dllTool = Resolve-Tool $MingwBin @("x86_64-w64-mingw32-dlltool.exe", "dlltool.exe")
+$compiler = Resolve-Tool $MingwBin @("x86_64-w64-mingw32-g++.exe", "g++.exe")
+if (-not (Test-Path $InnoSetupCompiler)) {
+    throw "Tool richiesto non trovato: $InnoSetupCompiler"
 }
 
 dotnet test $solution -c Release
