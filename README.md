@@ -33,8 +33,9 @@ Do not download an IPA from GitHub. TestFlight is the normal and supported iPhon
 1. Open the [v0.3.0 release page](../../releases/tag/v0.3.0).
 2. Under Assets, download `GTARemoteControl-0.3.0-macos.dmg`.
 3. Open the downloaded DMG file in Finder.
-4. Drag GTA Remote Control onto the Applications folder shown in the installation window.
-5. Open GTA Remote Control from Applications.
+4. Double-click `1. START HERE.html` first. It shows the complete Mac, iPhone, permissions, Wi-Fi, and pairing guide in the right order.
+5. Drag GTA Remote Control onto the Applications folder shown in the installation window.
+6. Open GTA Remote Control from Applications.
 
 GTA Remote Control is a menu-bar app. It does not open a normal window or stay in the Dock. Look at the right side of the macOS menu bar for its icon. Keep it running while you use GTA Remote.
 
