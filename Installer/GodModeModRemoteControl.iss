@@ -198,7 +198,8 @@ begin
     'Chiudi completamente GTA V prima di continuare. L''installer crea una copia dei file già presenti prima di sostituirli.',
     True, False);
   SafetyPage.Add('Ho chiuso GTA V e userò la mod soltanto in Modalità Storia.');
-  SafetyPage.Values[0] := False;
+  { A silent install already represents an explicit acceptance of this warning. }
+  SafetyPage.Values[0] := WizardSilent;
 end;
 
 function ShouldSkipPage(PageID: Integer): Boolean;
