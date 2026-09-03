@@ -33,7 +33,7 @@
 ## Direct controls v0.3.0, verify after a safe GTA restart
 
 - [x] Protocol v3, bridge, and iPhone compile and are signed.
-- [ ] A Windows x64 `GTARemoteBridge.asi` build is available from the included source. No binary is attached to this release.
+- [x] CI builds `GTARemoteBridge.asi` as a Windows x64 PE binary, verifies its ScriptHook V import, and includes it in the guided setup.
 - [ ] After saving and restarting GTA, `ScriptHookV.log` records the new module and `GTARemoteBridge.state` contains `wreckPreservation` and `preservedWreckCount`.
 - [ ] Turn on Preserve destroyed vehicles from the iPhone, drive a vehicle, destroy it, and confirm that it remains in the scene.
 - [ ] Turn the feature off and confirm that the counter returns to zero and GTA cleanup resumes.
@@ -43,7 +43,8 @@
 - [x] .NET protocol tests pass, including the same fixed X25519, fingerprint, and HKDF vector asserted by Swift.
 - [x] Windows tray project restores and compiles for `net8.0-windows10.0.19041.0` with zero warnings.
 - [x] The `win-x64` self-contained publish completes and contains the native crypto dependency.
-- [ ] Extract the ZIP on a Windows 10 or 11 x64 PC and launch `GodMode Mod Remote Control.exe`.
+- [x] The Windows runner installs the setup into a simulated GTA directory, verifies the app and `.asi`, then uninstalls and confirms that the shared ScriptHook files remain.
+- [ ] Run the setup interactively on a physical Windows 10 or 11 x64 PC and launch GodMode Mod Remote Control.
 - [ ] Allow Windows Defender Firewall only on the active private network and confirm that the iPhone discovers `_gtactrl._tcp` without a manual IP address.
 - [ ] Compare and approve the same six-digit pairing code on Windows and iPhone, then restart both apps and verify encrypted reconnection.
 - [ ] Select the real directory containing `GTA5.exe` and confirm that the delayed F4 test is rejected while another app is in front.

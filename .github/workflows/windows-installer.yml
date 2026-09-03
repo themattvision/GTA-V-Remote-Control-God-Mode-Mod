@@ -24,6 +24,7 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Install MinGW x64
+        id: msys2
         uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
@@ -42,7 +43,7 @@ jobs:
           ./Scripts/build-windows-installer.ps1
           -Version '${{ inputs.version }}'
           -OutputDirectory '${{ runner.temp }}\GodModeInstaller'
-          -MingwBin 'C:\msys64\mingw64\bin'
+          -MingwBin '${{ steps.msys2.outputs.msys2-location }}\mingw64\bin'
           -InnoSetupCompiler 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe'
 
       - name: Inspect Windows binaries
@@ -52,7 +53,7 @@ jobs:
           $installer = '${{ runner.temp }}\GodModeInstaller\installer\Windows-GodMode-Mod-Remote-Control-Setup-v${{ inputs.version }}.exe'
           if (-not (Test-Path $mod)) { throw "GTARemoteBridge.asi missing" }
           if (-not (Test-Path $installer)) { throw "Installer missing" }
-          $modInfo = & 'C:\msys64\mingw64\bin\objdump.exe' -p $mod | Out-String
+          $modInfo = & '${{ steps.msys2.outputs.msys2-location }}\mingw64\bin\objdump.exe' -p $mod | Out-String
           if ($modInfo -notmatch 'pei-x86-64') { throw "GTARemoteBridge.asi is not a Windows x64 PE binary" }
           if ($modInfo -notmatch 'ScriptHookV.dll') { throw "GTARemoteBridge.asi does not import ScriptHookV.dll" }
           Get-FileHash $mod -Algorithm SHA256

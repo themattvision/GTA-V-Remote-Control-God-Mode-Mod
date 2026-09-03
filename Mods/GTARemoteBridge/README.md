@@ -4,7 +4,7 @@
 
 It does not replace, alter, or patch `NativeTrainer.asi` or any existing God Mode mod. It is a separate companion module and can coexist with NativeTrainer.
 
-This is a developer component. No prebuilt `.asi` file is included in the repository or the v0.3.0 release.
+The guided Windows setup builds this source as an x64 `.asi` file and installs it next to `GTA5.exe`. Manual compilation is needed only for development.
 
 ## What the module does
 
@@ -26,6 +26,8 @@ You need all of the following before building:
 The included `ScriptHookV.def` creates the small import library required by the MinGW toolchain. It uses ordinals verified against `ScriptHookV.dll` for GTA Legacy 1.0.1180.2.
 
 ## Build and install
+
+Normal users should use `Windows-GodMode-Mod-Remote-Control-Setup-v0.3.0.exe` from the GitHub release. The steps below are for developers building the module separately.
 
 1. Build the source in this folder with the official ScriptHook V SDK and your Windows x64 compiler.
 2. Confirm that the build output is named exactly `GTARemoteBridge.asi`.
