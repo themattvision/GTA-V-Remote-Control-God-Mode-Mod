@@ -1,0 +1,129 @@
+default_platform(:ios)
+
+ASC_KEY_ID = ENV.fetch("ASC_KEY_ID", "27G96FQG92")
+ASC_ISSUER_ID = ENV.fetch("ASC_ISSUER_ID", "a5e9469e-76e9-440e-850b-5b4aef1f18b5")
+ASC_KEY_FILEPATH = ENV.fetch("ASC_KEY_FILEPATH")
+
+APP_IDENTIFIER = "com.matteozampieri.GTARemote"
+APP_STORE_ID = "6807096495"
+SCHEME = "GTARemote"
+ROOT_DIR = File.expand_path("..", __dir__)
+PROJECT = File.join(ROOT_DIR, "GTARemote.xcodeproj")
+TEAM_ID = "7HB6926XLK"
+OUTPUT_DIR = ENV.fetch("OUTPUT_DIR", File.expand_path("~/Downloads/GTA Remote TestFlight"))
+OUTPUT_IPA = "#{OUTPUT_DIR}/GTARemote.ipa"
+
+def asc_api_key
+  app_store_connect_api_key(
+    key_id: ASC_KEY_ID,
+    issuer_id: ASC_ISSUER_ID,
+    key_filepath: ASC_KEY_FILEPATH,
+    duration: 1200,
+    in_house: false
+  )
+end
+
+def cert_sha1_for(profile_path)
+  `security cms -D -i "#{profile_path}" 2>/dev/null | python3 -c "import sys, plistlib, hashlib; d=plistlib.loads(sys.stdin.buffer.read()); print(hashlib.sha1(d['DeveloperCertificates'][0]).hexdigest().upper())"`.strip
+end
+
+platform :ios do
+  desc "Archivia GTARemote Release e carica l'IPA su TestFlight"
+  lane :beta do
+    UI.user_error!("Manca la chiave App Store Connect: #{ASC_KEY_FILEPATH}") unless File.exist?(ASC_KEY_FILEPATH)
+
+    api_key = asc_api_key
+
+    get_provisioning_profile(
+      app_identifier: APP_IDENTIFIER,
+      api_key: api_key,
+      force: true
+    )
+    profile_name = Actions.lane_context[SharedValues::SIGH_NAME]
+    cert_sha1 = cert_sha1_for(Actions.lane_context[SharedValues::SIGH_PROFILE_PATH])
+
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      path: PROJECT,
+      team_id: TEAM_ID,
+      code_sign_identity: cert_sha1,
+      bundle_identifier: APP_IDENTIFIER,
+      profile_name: profile_name,
+      targets: [SCHEME]
+    )
+
+    sh(%Q{sed -i '' '/CODE_SIGN_IDENTITY\\[sdk=iphoneos\\*\\]/d' "#{PROJECT}/project.pbxproj"})
+
+    build_app(
+      project: PROJECT,
+      scheme: SCHEME,
+      configuration: "Release",
+      export_method: "app-store",
+      clean: true,
+      output_directory: OUTPUT_DIR,
+      output_name: "GTARemote.ipa",
+      export_options: {
+        method: "app-store",
+        signingStyle: "manual",
+        signingCertificate: cert_sha1,
+        teamID: TEAM_ID,
+        provisioningProfiles: { APP_IDENTIFIER => profile_name },
+        uploadSymbols: true,
+        manageAppVersionAndBuildNumber: false
+      },
+      xcargs: "CODE_SIGN_IDENTITY='#{cert_sha1}' PROVISIONING_PROFILE_SPECIFIER='#{profile_name}' CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM=#{TEAM_ID}"
+    )
+
+    upload_to_testflight(
+      api_key: api_key,
+      app_identifier: APP_IDENTIFIER,
+      app_platform: "ios",
+      apple_id: APP_STORE_ID,
+      ipa: OUTPUT_IPA,
+      changelog: "Nuova plancia telecomando: menu, frecce, indietro e conferma con UI Liquid Glass sobria.",
+      uses_non_exempt_encryption: false,
+      skip_waiting_for_build_processing: false,
+      wait_processing_interval: 30,
+      wait_processing_timeout_duration: 1800,
+      skip_submission: true
+    )
+  end
+
+  desc "Distribuisce il build gia caricato al gruppo esterno Beta pubblica"
+  lane :public_beta do
+    api_key = asc_api_key
+
+    upload_to_testflight(
+      api_key: api_key,
+      app_identifier: APP_IDENTIFIER,
+      app_platform: "ios",
+      apple_id: APP_STORE_ID,
+      distribute_only: true,
+      app_version: "0.3.0",
+      build_number: "4",
+      distribute_external: true,
+      groups: ["Beta pubblica"],
+      notify_external_testers: false,
+      changelog: "Nuova plancia telecomando: menu, frecce, indietro e conferma con UI Liquid Glass sobria.",
+      beta_app_feedback_email: "info@matteozampieri.com",
+      beta_app_description: "Telecomando locale per controllare dal telefono un bridge macOS sulla stessa rete Wi-Fi. Nessun account richiesto.",
+      localized_app_info: {
+        "it" => {
+          description: "Telecomando locale per controllare dal telefono un bridge macOS sulla stessa rete Wi-Fi. Nessun account richiesto.",
+          feedback_email: "info@matteozampieri.com"
+        }
+      },
+      beta_app_review_info: {
+        contact_first_name: "Matteo",
+        contact_last_name: "Zampieri",
+        contact_phone: "+393486197083",
+        contact_email: "info@matteozampieri.com",
+        demo_account_required: false,
+        notes: "Nessun account richiesto. L'app cerca un bridge macOS sulla rete locale e mostra la plancia telecomando. Per il test completo serve il bridge locale GTABridge; senza bridge si puo comunque verificare onboarding, ricerca rete locale e UI principale."
+      },
+      demo_account_required: false,
+      uses_non_exempt_encryption: false,
+      submit_beta_review: true
+    )
+  end
+end

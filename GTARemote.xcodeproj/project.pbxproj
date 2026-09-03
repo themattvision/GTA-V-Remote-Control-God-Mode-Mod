@@ -1,0 +1,990 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A6D0BA3F5A83A64DF70E5E7 /* GTAControlCore in Frameworks */ = {isa = PBXBuildFile; productRef = 889A275AE78CED9CE1D9D1D9 /* GTAControlCore */; };
+		117AD0B965780BCE3206CEBA /* TrainerBackdrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862105837AB7E2B49956C05A /* TrainerBackdrop.swift */; };
+		12E3A07B6BFF99875D35BB22 /* RemoteAppModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA827ED1426D4AA6C1E24F /* RemoteAppModelTests.swift */; };
+		14089B0864D4DCCC0C768D5B /* GameModStateProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BFCDEE87B3967F86D90E8C1 /* GameModStateProviderTests.swift */; };
+		140F9F139086814E7EBE8249 /* RemoteAppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF24764C6A58DF503CF5DE6 /* RemoteAppError.swift */; };
+		1AC709715233F68BEE6EBA00 /* BridgeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D06E8514A87FA631A05D77 /* BridgeModels.swift */; };
+		1F1876A64F0F49DAABCD9099 /* TrainerInputInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8087E70E130E30CFE9E4A23 /* TrainerInputInjector.swift */; };
+		26B2A829514C505439855ABD /* ForegroundGameGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDA2D214860BC5561D17ECF /* ForegroundGameGuard.swift */; };
+		289E4660D3BB578585057A00 /* GTAControlCore in Frameworks */ = {isa = PBXBuildFile; productRef = 123917436576FF11AC327F57 /* GTAControlCore */; };
+		338128F8BBB899D4278535EE /* BonjourRemoteClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE63F11E97022302C4133912 /* BonjourRemoteClient.swift */; };
+		3C1EBF70857FC236DA8F706D /* BridgeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD6B4317C32178E812AC07C /* BridgeMenuView.swift */; };
+		3CF594BEDF94ABDAAB5861A6 /* TrainerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ABD3613E0CEFEA5D0A23FA /* TrainerHeader.swift */; };
+		45CCE9AF5732D7052243C506 /* PairingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475DBC91DE022B440E30922C /* PairingSheet.swift */; };
+		46DE090F9F850ADFD6193441 /* AccessibilityPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B7C3F2FC7F6278AB94CD6 /* AccessibilityPermission.swift */; };
+		52550FC08B7B22224990ABC5 /* DirectionPadSwipeResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EE217C4907EBC985953176 /* DirectionPadSwipeResolver.swift */; };
+		525E99DF9D95F25C16EE91A0 /* TrainerInputInjectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC16E0158C03B4342FF803 /* TrainerInputInjectorTests.swift */; };
+		614CCC0C1A88E21A1FC54105 /* AppleGlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A8C4E8519B94ADF418B4CE /* AppleGlassCard.swift */; };
+		6516530AD22709D56AAB608E /* RemoteErrorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC211BA05C8F299516DD0B /* RemoteErrorSheet.swift */; };
+		67B5F92AB6775CC35F15AEF3 /* TrainerKeyMappingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B669651E1F6E41C7B4F8B /* TrainerKeyMappingTests.swift */; };
+		750CACEAAE27C7600BC68BD9 /* GTAControlCore in Frameworks */ = {isa = PBXBuildFile; productRef = E982549228AE65D04C6A309D /* GTAControlCore */; };
+		7B3D11983512904C8EB5EB17 /* GameModStateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7BD08F5BF5AE0182070994 /* GameModStateProvider.swift */; };
+		7E76AB6BD7BCEC55E869C2B7 /* BridgeClientSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211BAD545092073E8A125B2A /* BridgeClientSession.swift */; };
+		7EAE166C87351A44E29BD469 /* TrainerControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1E3C254F97AD7D46277FB0 /* TrainerControlButton.swift */; };
+		8242FC67F7D259FC4056D510 /* TrainerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA245FA900DA1ED3B8E07C /* TrainerTheme.swift */; };
+		85A8F7C2B91ABC020466F21F /* BridgeGlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC9D26D8D91B1251FF42BA /* BridgeGlassCard.swift */; };
+		87F9CEB7EDDBDF46CFA8BE03 /* GTAControlCore in Frameworks */ = {isa = PBXBuildFile; productRef = 3878083F2556E486B01E1257 /* GTAControlCore */; };
+		8CC23203558B34A5F861602B /* RemoteControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E32BFDE6378A8A653855B6 /* RemoteControlView.swift */; };
+		993EF03B89EC344C2BAE3145 /* MacroRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6F641FC7ED228C9BDD2813 /* MacroRunner.swift */; };
+		9B650A710D3BB7FEF677E32F /* ForegroundGameGuardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649675CD1B2BB03B9454C586 /* ForegroundGameGuardTests.swift */; };
+		9D91775F96E6DFE1C7BD31AB /* RemoteConnectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74331C328CE4FEBEA95B13DF /* RemoteConnectionState.swift */; };
+		9F91F6FA4E9BA02C90DF3EE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97B8CAA729DE956B2C749F3E /* Assets.xcassets */; };
+		A14D45695571D0C11687766A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E530A2DCAC45C80DCD8549 /* RootView.swift */; };
+		A4460A2D429D46194493BED7 /* DirectionPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = F752846F827D131D0CC223A2 /* DirectionPad.swift */; };
+		A816A74B1CBAFD4D51237EE9 /* BridgeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C493EA0026EE77D7F2B1E0 /* BridgeModel.swift */; };
+		AD967B7535C7B901D7AA7A29 /* BridgeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27758D2A6B4073D7E2C1370 /* BridgeListener.swift */; };
+		AEDABD7181FFF0733244AD3A /* ConnectionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538F628260CFA26C61EFA07A /* ConnectionStatusView.swift */; };
+		C1A0A9D961A0EC1071BF4DF6 /* GTABridgeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E4E3778E79E62B0BEE9B14 /* GTABridgeApp.swift */; };
+		C3210A43CBCC40306E6B2224 /* RemoteSessionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B977DE8096E7B5D080B7E8E /* RemoteSessionClient.swift */; };
+		D70886F92AF8160E7E952C27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A05BF6B40B74811596C70275 /* Assets.xcassets */; };
+		E304DB4AE3986248122B385A /* GTARemoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0229D5BF00B0C65E3704BC /* GTARemoteApp.swift */; };
+		EA9620AD575D68AA18FE928E /* TrainerPressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6062760ED1997343082A7E7 /* TrainerPressStyle.swift */; };
+		F052C9A65BA7B993717ABC86 /* RemoteAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CFC90427C579CDCE41F40D /* RemoteAppModel.swift */; };
+		F291891544776AADA07BD1A3 /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908FA7E4592813E499DF5382 /* HapticFeedback.swift */; };
+		F66CCF2F57160928D103477D /* PreviewRemoteClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5797137E47484B71D5594C8C /* PreviewRemoteClient.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2AE87A9282FC4B94FC5A8993 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92418B5FE042969C0F77FCD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04FC0575E063F80EB00A4847;
+			remoteInfo = GTABridge;
+		};
+		7E16E0B4245F964B7D083D61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92418B5FE042969C0F77FCD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 57976E2ED3B46ACEA6FA8419;
+			remoteInfo = GTARemote;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0AEA245FA900DA1ED3B8E07C /* TrainerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerTheme.swift; sourceTree = "<group>"; };
+		1A1E3C254F97AD7D46277FB0 /* TrainerControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerControlButton.swift; sourceTree = "<group>"; };
+		211BAD545092073E8A125B2A /* BridgeClientSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeClientSession.swift; sourceTree = "<group>"; };
+		2477C5100E1E0666EC24741E /* GTABridgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GTABridgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2ECA6165495FB85A837483F4 /* GTAControlCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GTAControlCore; path = Packages/GTAControlCore; sourceTree = SOURCE_ROOT; };
+		3AAA827ED1426D4AA6C1E24F /* RemoteAppModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAppModelTests.swift; sourceTree = "<group>"; };
+		3DCC211BA05C8F299516DD0B /* RemoteErrorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteErrorSheet.swift; sourceTree = "<group>"; };
+		40D06E8514A87FA631A05D77 /* BridgeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeModels.swift; sourceTree = "<group>"; };
+		40E4E3778E79E62B0BEE9B14 /* GTABridgeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTABridgeApp.swift; sourceTree = "<group>"; };
+		475DBC91DE022B440E30922C /* PairingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingSheet.swift; sourceTree = "<group>"; };
+		4C3B7C3F2FC7F6278AB94CD6 /* AccessibilityPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityPermission.swift; sourceTree = "<group>"; };
+		4FA570254C65D13092889B5F /* GTABridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTABridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		538F628260CFA26C61EFA07A /* ConnectionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStatusView.swift; sourceTree = "<group>"; };
+		5797137E47484B71D5594C8C /* PreviewRemoteClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewRemoteClient.swift; sourceTree = "<group>"; };
+		649675CD1B2BB03B9454C586 /* ForegroundGameGuardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForegroundGameGuardTests.swift; sourceTree = "<group>"; };
+		66E32BFDE6378A8A653855B6 /* RemoteControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteControlView.swift; sourceTree = "<group>"; };
+		6D6F641FC7ED228C9BDD2813 /* MacroRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroRunner.swift; sourceTree = "<group>"; };
+		71CFC90427C579CDCE41F40D /* RemoteAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAppModel.swift; sourceTree = "<group>"; };
+		74331C328CE4FEBEA95B13DF /* RemoteConnectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConnectionState.swift; sourceTree = "<group>"; };
+		7B977DE8096E7B5D080B7E8E /* RemoteSessionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSessionClient.swift; sourceTree = "<group>"; };
+		7BFCDEE87B3967F86D90E8C1 /* GameModStateProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModStateProviderTests.swift; sourceTree = "<group>"; };
+		7EDA2D214860BC5561D17ECF /* ForegroundGameGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForegroundGameGuard.swift; sourceTree = "<group>"; };
+		80CC9D26D8D91B1251FF42BA /* BridgeGlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeGlassCard.swift; sourceTree = "<group>"; };
+		862105837AB7E2B49956C05A /* TrainerBackdrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerBackdrop.swift; sourceTree = "<group>"; };
+		89A8C4E8519B94ADF418B4CE /* AppleGlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleGlassCard.swift; sourceTree = "<group>"; };
+		8CD6B4317C32178E812AC07C /* BridgeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeMenuView.swift; sourceTree = "<group>"; };
+		908FA7E4592813E499DF5382 /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
+		97B8CAA729DE956B2C749F3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A05BF6B40B74811596C70275 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A7ABD3613E0CEFEA5D0A23FA /* TrainerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerHeader.swift; sourceTree = "<group>"; };
+		AC42DD5AC694E016B8872F4A /* GTARemoteTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = GTARemoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0E530A2DCAC45C80DCD8549 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		B27758D2A6B4073D7E2C1370 /* BridgeListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeListener.swift; sourceTree = "<group>"; };
+		BE63F11E97022302C4133912 /* BonjourRemoteClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonjourRemoteClient.swift; sourceTree = "<group>"; };
+		C0CC16E0158C03B4342FF803 /* TrainerInputInjectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerInputInjectorTests.swift; sourceTree = "<group>"; };
+		C8087E70E130E30CFE9E4A23 /* TrainerInputInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerInputInjector.swift; sourceTree = "<group>"; };
+		C9D028A16F7600E1D7F3CBB0 /* GTARemote.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = GTARemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7BD08F5BF5AE0182070994 /* GameModStateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModStateProvider.swift; sourceTree = "<group>"; };
+		CDF24764C6A58DF503CF5DE6 /* RemoteAppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAppError.swift; sourceTree = "<group>"; };
+		D0EE217C4907EBC985953176 /* DirectionPadSwipeResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionPadSwipeResolver.swift; sourceTree = "<group>"; };
+		E6062760ED1997343082A7E7 /* TrainerPressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerPressStyle.swift; sourceTree = "<group>"; };
+		E8C493EA0026EE77D7F2B1E0 /* BridgeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeModel.swift; sourceTree = "<group>"; };
+		ED5B669651E1F6E41C7B4F8B /* TrainerKeyMappingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerKeyMappingTests.swift; sourceTree = "<group>"; };
+		EF0229D5BF00B0C65E3704BC /* GTARemoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTARemoteApp.swift; sourceTree = "<group>"; };
+		F752846F827D131D0CC223A2 /* DirectionPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionPad.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0169998B71B57AA105FB6584 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				289E4660D3BB578585057A00 /* GTAControlCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A0B72F85CEAA840A0AE31A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87F9CEB7EDDBDF46CFA8BE03 /* GTAControlCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44340BF7EE619856047B954C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A6D0BA3F5A83A64DF70E5E7 /* GTAControlCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80F928B418822CA9696D8048 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				750CACEAAE27C7600BC68BD9 /* GTAControlCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0369BAF18C5F672DB29CBD8F /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				0AEA245FA900DA1ED3B8E07C /* TrainerTheme.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		07CE711BEF6BC0015DEE3F09 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				5797137E47484B71D5594C8C /* PreviewRemoteClient.swift */,
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
+		16A42CFC0416077853DC3DF0 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C4E8DE9490B62A07D5B9B34C /* GTARemote */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		1A56A5D286F389A75A05F41F /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				70E90E9D72315E09BDD93FFD /* Remote */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		24983240C297AFED23BDE7FA /* GTARemoteTests */ = {
+			isa = PBXGroup;
+			children = (
+				3AAA827ED1426D4AA6C1E24F /* RemoteAppModelTests.swift */,
+			);
+			path = GTARemoteTests;
+			sourceTree = "<group>";
+		};
+		269935F33285C75AA2CE43EA = {
+			isa = PBXGroup;
+			children = (
+				16A42CFC0416077853DC3DF0 /* iOS */,
+				F3682631BA77FB94C11291F5 /* macOS */,
+				6A5563B45E99E65267467984 /* Packages */,
+				992681D02FB69E450AAF7C4B /* Tests */,
+				A4D3BA5ECE20FCDE9A06F8EC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3493932769245A25CACCF782 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				7EDA2D214860BC5561D17ECF /* ForegroundGameGuard.swift */,
+				6D6F641FC7ED228C9BDD2813 /* MacroRunner.swift */,
+				C8087E70E130E30CFE9E4A23 /* TrainerInputInjector.swift */,
+			);
+			path = Input;
+			sourceTree = "<group>";
+		};
+		57566C3B1137C131EE4FC3CE /* GTABridgeTests */ = {
+			isa = PBXGroup;
+			children = (
+				649675CD1B2BB03B9454C586 /* ForegroundGameGuardTests.swift */,
+				7BFCDEE87B3967F86D90E8C1 /* GameModStateProviderTests.swift */,
+				C0CC16E0158C03B4342FF803 /* TrainerInputInjectorTests.swift */,
+				ED5B669651E1F6E41C7B4F8B /* TrainerKeyMappingTests.swift */,
+			);
+			path = GTABridgeTests;
+			sourceTree = "<group>";
+		};
+		613CD9F95846A0BCCEA73474 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				89A8C4E8519B94ADF418B4CE /* AppleGlassCard.swift */,
+				538F628260CFA26C61EFA07A /* ConnectionStatusView.swift */,
+				475DBC91DE022B440E30922C /* PairingSheet.swift */,
+				3DCC211BA05C8F299516DD0B /* RemoteErrorSheet.swift */,
+				862105837AB7E2B49956C05A /* TrainerBackdrop.swift */,
+				1A1E3C254F97AD7D46277FB0 /* TrainerControlButton.swift */,
+				A7ABD3613E0CEFEA5D0A23FA /* TrainerHeader.swift */,
+				E6062760ED1997343082A7E7 /* TrainerPressStyle.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		6A5563B45E99E65267467984 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				2ECA6165495FB85A837483F4 /* GTAControlCore */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		70E90E9D72315E09BDD93FFD /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				F752846F827D131D0CC223A2 /* DirectionPad.swift */,
+				D0EE217C4907EBC985953176 /* DirectionPadSwipeResolver.swift */,
+				66E32BFDE6378A8A653855B6 /* RemoteControlView.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		7A7ABE454FE20C17D496974B /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				4C3B7C3F2FC7F6278AB94CD6 /* AccessibilityPermission.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		7B6D9E2F064232BC32BB3795 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E8C493EA0026EE77D7F2B1E0 /* BridgeModel.swift */,
+				40E4E3778E79E62B0BEE9B14 /* GTABridgeApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		8F5E64CE74E71331367D7ABB /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BE63F11E97022302C4133912 /* BonjourRemoteClient.swift */,
+				7B977DE8096E7B5D080B7E8E /* RemoteSessionClient.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		924EB2A269BB66E15EB27E5D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				211BAD545092073E8A125B2A /* BridgeClientSession.swift */,
+				B27758D2A6B4073D7E2C1370 /* BridgeListener.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		978263E31168A2D3430917C6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CDF24764C6A58DF503CF5DE6 /* RemoteAppError.swift */,
+				74331C328CE4FEBEA95B13DF /* RemoteConnectionState.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		992681D02FB69E450AAF7C4B /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				57566C3B1137C131EE4FC3CE /* GTABridgeTests */,
+				24983240C297AFED23BDE7FA /* GTARemoteTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		A4D3BA5ECE20FCDE9A06F8EC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4FA570254C65D13092889B5F /* GTABridge.app */,
+				2477C5100E1E0666EC24741E /* GTABridgeTests.xctest */,
+				C9D028A16F7600E1D7F3CBB0 /* GTARemote.app */,
+				AC42DD5AC694E016B8872F4A /* GTARemoteTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB15E6A3900B42632FEA4339 /* Mod */ = {
+			isa = PBXGroup;
+			children = (
+				CA7BD08F5BF5AE0182070994 /* GameModStateProvider.swift */,
+			);
+			path = Mod;
+			sourceTree = "<group>";
+		};
+		C4E8DE9490B62A07D5B9B34C /* GTARemote */ = {
+			isa = PBXGroup;
+			children = (
+				97B8CAA729DE956B2C749F3E /* Assets.xcassets */,
+				EF0229D5BF00B0C65E3704BC /* GTARemoteApp.swift */,
+				B0E530A2DCAC45C80DCD8549 /* RootView.swift */,
+				CA05D6C120E23E015CDA5487 /* App */,
+				613CD9F95846A0BCCEA73474 /* Components */,
+				0369BAF18C5F672DB29CBD8F /* Design */,
+				1A56A5D286F389A75A05F41F /* Features */,
+				978263E31168A2D3430917C6 /* Model */,
+				8F5E64CE74E71331367D7ABB /* Networking */,
+				07CE711BEF6BC0015DEE3F09 /* Preview */,
+				D837544500F5E6DEA65E9276 /* Support */,
+			);
+			path = GTARemote;
+			sourceTree = "<group>";
+		};
+		CA05D6C120E23E015CDA5487 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				71CFC90427C579CDCE41F40D /* RemoteAppModel.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D53A039997DBD6017DAC94D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				80CC9D26D8D91B1251FF42BA /* BridgeGlassCard.swift */,
+				8CD6B4317C32178E812AC07C /* BridgeMenuView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D73431CB903E5144CE21469A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				40D06E8514A87FA631A05D77 /* BridgeModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D837544500F5E6DEA65E9276 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				908FA7E4592813E499DF5382 /* HapticFeedback.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		F3682631BA77FB94C11291F5 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				FC720137FF572CF88E89219F /* GTABridge */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		FC720137FF572CF88E89219F /* GTABridge */ = {
+			isa = PBXGroup;
+			children = (
+				A05BF6B40B74811596C70275 /* Assets.xcassets */,
+				7B6D9E2F064232BC32BB3795 /* App */,
+				3493932769245A25CACCF782 /* Input */,
+				BB15E6A3900B42632FEA4339 /* Mod */,
+				D73431CB903E5144CE21469A /* Models */,
+				924EB2A269BB66E15EB27E5D /* Networking */,
+				7A7ABE454FE20C17D496974B /* Security */,
+				D53A039997DBD6017DAC94D7 /* Views */,
+			);
+			path = GTABridge;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		04FC0575E063F80EB00A4847 /* GTABridge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F5CAC541F5AE272842997FE /* Build configuration list for PBXNativeTarget "GTABridge" */;
+			buildPhases = (
+				BA630DFFF9613A9799650F00 /* Sources */,
+				3FBEEAA6CCB64F2319587266 /* Resources */,
+				42A0B72F85CEAA840A0AE31A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GTABridge;
+			packageProductDependencies = (
+				3878083F2556E486B01E1257 /* GTAControlCore */,
+			);
+			productName = GTABridge;
+			productReference = 4FA570254C65D13092889B5F /* GTABridge.app */;
+			productType = "com.apple.product-type.application";
+		};
+		57976E2ED3B46ACEA6FA8419 /* GTARemote */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A45EAE3568BCDE476DEAE8DA /* Build configuration list for PBXNativeTarget "GTARemote" */;
+			buildPhases = (
+				D4BA3EB124ACA642DFAA2D27 /* Sources */,
+				87EE278F91C7809064EA1B2B /* Resources */,
+				44340BF7EE619856047B954C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GTARemote;
+			packageProductDependencies = (
+				889A275AE78CED9CE1D9D1D9 /* GTAControlCore */,
+			);
+			productName = GTARemote;
+			productReference = C9D028A16F7600E1D7F3CBB0 /* GTARemote.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8C89966A995B3916ABAB2BDE /* GTARemoteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 185B996A5873318855613A02 /* Build configuration list for PBXNativeTarget "GTARemoteTests" */;
+			buildPhases = (
+				406636550737E7A6DF180BDB /* Sources */,
+				80F928B418822CA9696D8048 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4158BAED139F332E5A2315F7 /* PBXTargetDependency */,
+			);
+			name = GTARemoteTests;
+			packageProductDependencies = (
+				E982549228AE65D04C6A309D /* GTAControlCore */,
+			);
+			productName = GTARemoteTests;
+			productReference = AC42DD5AC694E016B8872F4A /* GTARemoteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D598411529F9F56082472AB9 /* GTABridgeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9035209111E8D38925CF1AFD /* Build configuration list for PBXNativeTarget "GTABridgeTests" */;
+			buildPhases = (
+				1FC1D266101A1D3834BF3ACC /* Sources */,
+				0169998B71B57AA105FB6584 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E5AC63906A432E47724695E /* PBXTargetDependency */,
+			);
+			name = GTABridgeTests;
+			packageProductDependencies = (
+				123917436576FF11AC327F57 /* GTAControlCore */,
+			);
+			productName = GTABridgeTests;
+			productReference = 2477C5100E1E0666EC24741E /* GTABridgeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		92418B5FE042969C0F77FCD4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					04FC0575E063F80EB00A4847 = {
+						DevelopmentTeam = 7HB6926XLK;
+						ProvisioningStyle = Automatic;
+					};
+					57976E2ED3B46ACEA6FA8419 = {
+						DevelopmentTeam = 7HB6926XLK;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E3768621F353C75F59863E3D /* Build configuration list for PBXProject "GTARemote" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 269935F33285C75AA2CE43EA;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2D279528523A2A3304497A39 /* XCLocalSwiftPackageReference "Packages/GTAControlCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04FC0575E063F80EB00A4847 /* GTABridge */,
+				D598411529F9F56082472AB9 /* GTABridgeTests */,
+				57976E2ED3B46ACEA6FA8419 /* GTARemote */,
+				8C89966A995B3916ABAB2BDE /* GTARemoteTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3FBEEAA6CCB64F2319587266 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D70886F92AF8160E7E952C27 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87EE278F91C7809064EA1B2B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F91F6FA4E9BA02C90DF3EE0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1FC1D266101A1D3834BF3ACC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B650A710D3BB7FEF677E32F /* ForegroundGameGuardTests.swift in Sources */,
+				14089B0864D4DCCC0C768D5B /* GameModStateProviderTests.swift in Sources */,
+				525E99DF9D95F25C16EE91A0 /* TrainerInputInjectorTests.swift in Sources */,
+				67B5F92AB6775CC35F15AEF3 /* TrainerKeyMappingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		406636550737E7A6DF180BDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12E3A07B6BFF99875D35BB22 /* RemoteAppModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA630DFFF9613A9799650F00 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46DE090F9F850ADFD6193441 /* AccessibilityPermission.swift in Sources */,
+				7E76AB6BD7BCEC55E869C2B7 /* BridgeClientSession.swift in Sources */,
+				85A8F7C2B91ABC020466F21F /* BridgeGlassCard.swift in Sources */,
+				AD967B7535C7B901D7AA7A29 /* BridgeListener.swift in Sources */,
+				3C1EBF70857FC236DA8F706D /* BridgeMenuView.swift in Sources */,
+				A816A74B1CBAFD4D51237EE9 /* BridgeModel.swift in Sources */,
+				1AC709715233F68BEE6EBA00 /* BridgeModels.swift in Sources */,
+				26B2A829514C505439855ABD /* ForegroundGameGuard.swift in Sources */,
+				C1A0A9D961A0EC1071BF4DF6 /* GTABridgeApp.swift in Sources */,
+				7B3D11983512904C8EB5EB17 /* GameModStateProvider.swift in Sources */,
+				993EF03B89EC344C2BAE3145 /* MacroRunner.swift in Sources */,
+				1F1876A64F0F49DAABCD9099 /* TrainerInputInjector.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4BA3EB124ACA642DFAA2D27 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				614CCC0C1A88E21A1FC54105 /* AppleGlassCard.swift in Sources */,
+				338128F8BBB899D4278535EE /* BonjourRemoteClient.swift in Sources */,
+				AEDABD7181FFF0733244AD3A /* ConnectionStatusView.swift in Sources */,
+				A4460A2D429D46194493BED7 /* DirectionPad.swift in Sources */,
+				52550FC08B7B22224990ABC5 /* DirectionPadSwipeResolver.swift in Sources */,
+				E304DB4AE3986248122B385A /* GTARemoteApp.swift in Sources */,
+				F291891544776AADA07BD1A3 /* HapticFeedback.swift in Sources */,
+				45CCE9AF5732D7052243C506 /* PairingSheet.swift in Sources */,
+				F66CCF2F57160928D103477D /* PreviewRemoteClient.swift in Sources */,
+				140F9F139086814E7EBE8249 /* RemoteAppError.swift in Sources */,
+				F052C9A65BA7B993717ABC86 /* RemoteAppModel.swift in Sources */,
+				9D91775F96E6DFE1C7BD31AB /* RemoteConnectionState.swift in Sources */,
+				8CC23203558B34A5F861602B /* RemoteControlView.swift in Sources */,
+				6516530AD22709D56AAB608E /* RemoteErrorSheet.swift in Sources */,
+				C3210A43CBCC40306E6B2224 /* RemoteSessionClient.swift in Sources */,
+				A14D45695571D0C11687766A /* RootView.swift in Sources */,
+				117AD0B965780BCE3206CEBA /* TrainerBackdrop.swift in Sources */,
+				7EAE166C87351A44E29BD469 /* TrainerControlButton.swift in Sources */,
+				3CF594BEDF94ABDAAB5861A6 /* TrainerHeader.swift in Sources */,
+				EA9620AD575D68AA18FE928E /* TrainerPressStyle.swift in Sources */,
+				8242FC67F7D259FC4056D510 /* TrainerTheme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4158BAED139F332E5A2315F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 57976E2ED3B46ACEA6FA8419 /* GTARemote */;
+			targetProxy = 7E16E0B4245F964B7D083D61 /* PBXContainerItemProxy */;
+		};
+		6E5AC63906A432E47724695E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04FC0575E063F80EB00A4847 /* GTABridge */;
+			targetProxy = 2AE87A9282FC4B94FC5A8993 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		080D0CBE0DC4C20256381992 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.matteozampieri.GTABridgeTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GTABridge.app/Contents/MacOS/GTABridge";
+			};
+			name = Debug;
+		};
+		0A85695E4BBAFA90A3442031 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_APPROACHABLE_CONCURRENCY = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		4456E3E174DE1FA45FDB37E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.matteozampieri.GTABridgeTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GTABridge.app/Contents/MacOS/GTABridge";
+			};
+			name = Release;
+		};
+		460C613AA9AC38B82FE289B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconMac;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = 7HB6926XLK;
+				ENABLE_APP_SANDBOX = NO;
+				INFOPLIST_FILE = "Config/GTABridge-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.3.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.matteozampieri.GTABridge;
+				PRODUCT_NAME = GTABridge;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		50CFFCFDF3E86831D0CC2012 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.matteozampieri.GTARemoteTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GTARemote.app/GTARemote";
+			};
+			name = Debug;
+		};
+		6A143F022E1BB71F7BB4B2AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconiOS;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = 7HB6926XLK;
+				INFOPLIST_FILE = "Config/GTARemote-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.3.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.matteozampieri.GTARemote;
+				PRODUCT_NAME = GTARemote;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		995466E47B04168B51DE6C13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconiOS;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = 7HB6926XLK;
+				INFOPLIST_FILE = "Config/GTARemote-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.3.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.matteozampieri.GTARemote;
+				PRODUCT_NAME = GTARemote;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		9D680823FD89B8615351EEF8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.matteozampieri.GTARemoteTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GTARemote.app/GTARemote";
+			};
+			name = Release;
+		};
+		D86FD751E2B10568AFC473CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_APPROACHABLE_CONCURRENCY = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		D890EFC557A4CBBBF1AE79A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconMac;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = 7HB6926XLK;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "Config/GTABridge-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.3.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.matteozampieri.GTABridge;
+				PRODUCT_NAME = GTABridge;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		185B996A5873318855613A02 /* Build configuration list for PBXNativeTarget "GTARemoteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50CFFCFDF3E86831D0CC2012 /* Debug */,
+				9D680823FD89B8615351EEF8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6F5CAC541F5AE272842997FE /* Build configuration list for PBXNativeTarget "GTABridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				460C613AA9AC38B82FE289B9 /* Debug */,
+				D890EFC557A4CBBBF1AE79A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9035209111E8D38925CF1AFD /* Build configuration list for PBXNativeTarget "GTABridgeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				080D0CBE0DC4C20256381992 /* Debug */,
+				4456E3E174DE1FA45FDB37E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A45EAE3568BCDE476DEAE8DA /* Build configuration list for PBXNativeTarget "GTARemote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				995466E47B04168B51DE6C13 /* Debug */,
+				6A143F022E1BB71F7BB4B2AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E3768621F353C75F59863E3D /* Build configuration list for PBXProject "GTARemote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D86FD751E2B10568AFC473CC /* Debug */,
+				0A85695E4BBAFA90A3442031 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		2D279528523A2A3304497A39 /* XCLocalSwiftPackageReference "Packages/GTAControlCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/GTAControlCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		123917436576FF11AC327F57 /* GTAControlCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GTAControlCore;
+		};
+		3878083F2556E486B01E1257 /* GTAControlCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GTAControlCore;
+		};
+		889A275AE78CED9CE1D9D1D9 /* GTAControlCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GTAControlCore;
+		};
+		E982549228AE65D04C6A309D /* GTAControlCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GTAControlCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 92418B5FE042969C0F77FCD4 /* Project object */;
+}
