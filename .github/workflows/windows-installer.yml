@@ -1,0 +1,62 @@
+name: Build Windows installer
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Product version
+        required: true
+        default: 0.3.0
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Install .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Install MinGW x64
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: mingw-w64-x86_64-gcc
+
+      - name: Install Inno Setup
+        shell: pwsh
+        run: choco install innosetup --no-progress -y
+
+      - name: Build app, ASI module and installer
+        shell: pwsh
+        run: >-
+          ./Scripts/build-windows-installer.ps1
+          -Version '${{ inputs.version }}'
+          -OutputDirectory '${{ runner.temp }}\GodModeInstaller'
+          -MingwBin 'C:\msys64\mingw64\bin'
+          -InnoSetupCompiler 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe'
+
+      - name: Inspect Windows binaries
+        shell: pwsh
+        run: |
+          $mod = '${{ runner.temp }}\GodModeInstaller\build\mod\GTARemoteBridge.asi'
+          $installer = '${{ runner.temp }}\GodModeInstaller\installer\Windows-GodMode-Mod-Remote-Control-Setup-v${{ inputs.version }}.exe'
+          if (-not (Test-Path $mod)) { throw "GTARemoteBridge.asi missing" }
+          if (-not (Test-Path $installer)) { throw "Installer missing" }
+          Get-FileHash $mod -Algorithm SHA256
+          Get-FileHash $installer -Algorithm SHA256
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: Windows-GodMode-Mod-Remote-Control-Setup-v${{ inputs.version }}
+          path: ${{ runner.temp }}\GodModeInstaller\installer\Windows-GodMode-Mod-Remote-Control-Setup-v${{ inputs.version }}.exe
+          if-no-files-found: error
+          retention-days: 14
