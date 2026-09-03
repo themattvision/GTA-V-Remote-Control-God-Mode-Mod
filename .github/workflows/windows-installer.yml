@@ -92,7 +92,14 @@ jobs:
             "/DIR=`"$appDirectory`"",
             "/LOG=`"$installLog`""
           )
-          $installProcess = Start-Process $installer -ArgumentList $installArguments -Wait -PassThru
+          $installProcess = Start-Process $installer -ArgumentList $installArguments -PassThru
+          if (-not $installProcess.WaitForExit(60000)) {
+            if (Test-Path $installLog) { Get-Content $installLog }
+            Get-Process | Where-Object { $_.ProcessName -match 'GodMode|Windows-GodMode|setup|unins' } |
+              Select-Object Id, ProcessName, MainWindowTitle
+            & taskkill.exe /PID $installProcess.Id /T /F
+            throw 'Installer timed out after 60 seconds'
+          }
           if ($installProcess.ExitCode -ne 0) {
             if (Test-Path $installLog) { Get-Content $installLog }
             throw "Installer exited with $($installProcess.ExitCode)"
