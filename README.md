@@ -1,76 +1,124 @@
 # GTA Remote
 
-Telecomando locale per GTA V Legacy in modalità Storia. Sostituisce il tastierino numerico quando giochi con il controller, tramite un iPhone e un piccolo bridge nella barra dei menu del Mac.
+GTA Remote is a local, two-part remote control for GTA V Legacy Story Mode. Your iPhone is the controller. A small Mac menu-bar app, GTA Bridge, is the local connection between the phone and the game.
 
-Funziona solo in locale, sulla stessa rete Wi-Fi, e solo per uso personale offline. Non supporta GTA Online.
+It is for personal, offline use on your own Wi-Fi network. It does not support GTA Online.
 
-## Installa
+## Start here
 
-### iPhone, GTA Remote
+Before downloading anything, make sure you have all four items below:
 
-[Apri la beta su TestFlight](https://testflight.apple.com/join/TfJtcUy3), quindi installa GTA Remote dall'app TestFlight.
+1. A Mac running macOS 15 or later. GTA Bridge runs on this Mac.
+2. An iPhone running iOS 18 or later. GTA Remote runs on this iPhone.
+3. GTA V Legacy installed for Story Mode, with ScriptHook V if you want to build and use the optional companion module.
+4. The Mac and iPhone connected to the same Wi-Fi network. Turn off any VPN on either device while pairing.
 
-Stato al 3 settembre 2026: il build pubblico è `0.3.0 (4)`, valido e pronto per i tester interni. Il link pubblico è attivo, ma l'installazione per tester esterni resta in attesa dell'approvazione Apple Beta App Review.
+The iPhone app cannot work by itself. Leave GTA Bridge running on the Mac while you use the iPhone.
 
-L'IPA non è il canale di installazione pubblico: su iPhone la distribuzione avviene tramite TestFlight.
+## Install the iPhone app
 
-### Mac, GTA Bridge
+1. On the iPhone, open this TestFlight link: [Join GTA Remote on TestFlight](https://testflight.apple.com/join/TfJtcUy3).
+2. If TestFlight is not installed, install it from the App Store, then open the link again.
+3. Tap Accept, then Install.
+4. Open GTA Remote after the installation finishes. When iOS asks for Local Network access, tap Allow.
 
-Scarica `GTABridge-0.3.0-macos.zip` dalla [release v0.3.0](../../releases/tag/v0.3.0), estrailo e sposta `GTABridge.app` in Applicazioni. L'app è firmata con Developer ID, notarizzata e graffettata da Apple.
+### Current TestFlight status, 3 September 2026
 
-Al primo avvio:
+Build `0.3.0 (4)` is valid and ready for internal testers. The public TestFlight link is enabled, but external installation is still waiting for Apple Beta App Review. If TestFlight says that the app is unavailable, this is the reason. Internal testers can use the current build now.
 
-1. Consenti l'accesso alla Rete locale quando macOS lo chiede.
-2. Dal menu di GTA Bridge, apri le impostazioni di Privacy e sicurezza e abilita Accessibilità per GTA Bridge.
-3. Lascia GTA Bridge aperta nella barra dei menu.
+Do not download an IPA from GitHub. TestFlight is the normal and supported iPhone installation route.
 
-### Collega iPhone e Mac
+## Install GTA Bridge on the Mac
 
-1. Collega entrambi alla stessa Wi-Fi e avvia GTA Bridge.
-2. Apri GTA Remote, consenti Rete locale e scegli il bridge trovato.
-3. Confronta il codice di sei cifre su iPhone e Mac, poi approva dal Mac.
-4. Porta GTA V Legacy in primo piano e usa la plancia: Apri / chiudi menu, D-pad anche con swipe, Indietro e Conferma.
+1. Open the [v0.3.0 release page](../../releases/tag/v0.3.0).
+2. Under Assets, download `GTABridge-0.3.0-macos.zip`.
+3. Open the downloaded ZIP file in Finder. It expands to `GTABridge.app`.
+4. Drag `GTABridge.app` into the Mac's **Applications** folder.
+5. Open `GTABridge.app` from Applications.
 
-Il bridge accetta soltanto comandi previsti dall'app e li inoltra solo con GTA in primo piano.
+GTA Bridge is a menu-bar app. It does not open a normal window or stay in the Dock. Look at the right side of the macOS menu bar for its icon. Keep it running while you use GTA Remote.
 
-## Modulo ScriptHook V aggiuntivo
+The download is signed with Developer ID, notarized by Apple, and stapled for offline Gatekeeper verification.
 
-`GTARemoteBridge.asi` è il nostro modulo companion ScriptHook V. Non sostituisce e non modifica `NativeTrainer.asi`: i due moduli convivono.
+### Allow the two Mac permissions
 
-Rende dirette e verificabili due azioni già implementate nel protocollo, Invincibilità/God Mode e Conserva veicoli distrutti. L'attuale UI iPhone non le espone, ma il bridge e il modulo mantengono il supporto per compatibilità e per una futura superficie esplicita.
+On first use, GTA Bridge may ask for permissions. Allow both:
 
-Il binario `.asi` non è incluso nella release: in questo checkout non è disponibile un SDK/toolchain Windows ScriptHook V con cui produrlo in modo verificabile. Il sorgente è in [`Mods/GTARemoteBridge`](Mods/GTARemoteBridge) e le istruzioni di compilazione complete sono nel suo [README](Mods/GTARemoteBridge/README.md).
+1. Local Network: this lets the Mac find your iPhone on the same Wi-Fi network.
+2. Accessibility: this lets GTA Bridge send the supported controller input to the local GTA window.
 
-Per installarlo dopo averlo compilato:
+If macOS does not show the Accessibility prompt, open System Settings, go to Privacy & Security, then Accessibility, and enable GTA Bridge. Quit and reopen GTA Bridge after changing the permission.
 
-1. Chiudi GTA e salva la partita.
-2. Metti `GTARemoteBridge.asi` nella cartella che contiene `GTA5.exe`, accanto a `ScriptHookV.dll` e `dinput8.dll`.
-3. Avvia GTA V Legacy in modalità Storia e verifica in `asiloader.log` le righe di caricamento del modulo.
-4. Il bridge scrive `GTARemoteBridge.command`; il modulo pubblica `GTARemoteBridge.state` nella stessa cartella. Non modificare questi file mentre GTA è aperto.
+## Pair the iPhone and Mac
 
-Per un aggiornamento, prepara `GTARemoteBridge.asi.next` mentre GTA è chiuso, conserva una copia recuperabile del vecchio `.asi`, poi rinomina il nuovo file in `GTARemoteBridge.asi` e riavvia il gioco. ScriptHook carica i moduli soltanto all'avvio.
+1. Start GTA Bridge on the Mac and leave it running in the menu bar.
+2. Confirm that the Mac and iPhone are on the same Wi-Fi network. Do not use a guest network.
+3. Open GTA Remote on the iPhone.
+4. Select the Mac when it appears.
+5. Compare the pairing number shown on both devices.
+6. Approve the pairing on the Mac only when the two numbers match.
 
-## Cosa include il repository
+If the Mac does not appear, check these items in order: both apps are open, both devices use the same non-guest Wi-Fi, both VPNs are off, and Local Network access is allowed on both devices. Then quit and reopen GTA Bridge and GTA Remote.
 
-- `iOS/GTARemote`: app SwiftUI per iPhone, distribuita pubblicamente con TestFlight.
-- `macOS/GTABridge`: bridge SwiftUI macOS nella barra dei menu.
-- `Packages/GTAControlCore`: protocollo, pairing e canale cifrato.
-- `Mods/GTARemoteBridge`: sorgente del modulo ScriptHook V aggiuntivo.
-- [`docs/protocol.md`](docs/protocol.md) e [`docs/e2e-checklist.md`](docs/e2e-checklist.md): dettagli tecnici e verifica.
+## Optional ScriptHook V companion module
 
-## Sviluppo
+`GTARemoteBridge.asi` is our additional ScriptHook V companion module. It is not a replacement for `NativeTrainer.asi`, and it does not modify NativeTrainer or an existing God Mode mod. The two modules are designed to coexist.
 
-Il progetto Xcode è generato da `project.yml`:
+The module makes these selected controls direct and state-backed:
+
+- God Mode
+- Preserve destroyed vehicles, limited to 12 vehicles driven by the player
+
+The current iPhone interface does not expose these two controls yet. The module and protocol are kept for bridge compatibility and future verified controls.
+
+### Important: no ready-to-install `.asi` file is included
+
+This release does not contain `GTARemoteBridge.asi`, because the required official ScriptHook V SDK and Windows x64 build toolchain are not available in this release environment. Do not download a random `.asi` file from an unofficial source.
+
+This section is for developers who can build the module from the included source. Everyone else can skip it.
+
+### Build and install the module
+
+1. Install the official ScriptHook V SDK and a Windows x64 C++ compiler.
+2. Build the source in [`Mods/GTARemoteBridge`](Mods/GTARemoteBridge). The output file must be named `GTARemoteBridge.asi`.
+3. Close GTA V completely. Do not replace ScriptHook files while the game is running.
+4. Open the folder that contains `GTA5.exe`.
+5. Put `GTARemoteBridge.asi` in that exact folder, next to `GTA5.exe`, `ScriptHookV.dll`, and `dinput8.dll`.
+6. Start GTA V Legacy and enter Story Mode.
+
+When the module is running, GTA Bridge writes `GTARemoteBridge.command` in the same GTA folder. The module reads it and publishes `GTARemoteBridge.state` there. Do not edit either file while GTA is open.
+
+### Update the module safely
+
+1. Save your game and close GTA V completely.
+2. Place the newly built file in the GTA folder as `GTARemoteBridge.asi.next`.
+3. Rename the current `GTARemoteBridge.asi` to a backup name, for example `GTARemoteBridge.asi.backup`.
+4. Rename `GTARemoteBridge.asi.next` to `GTARemoteBridge.asi`.
+5. Start GTA V Legacy again.
+
+ScriptHook loads ASI modules only when GTA starts. Do not try to hot-swap the module during a game session. See the [module README](Mods/GTARemoteBridge/README.md) for technical details.
+
+## What is included in this repository
+
+- iPhone source: `iOS/GTARemote`
+- Mac bridge source: `macOS/GTABridge`
+- Shared secure local protocol: `Packages/GTAControlCore`
+- ScriptHook V companion module source: `Mods/GTARemoteBridge`
+- Release and protocol notes: `CHANGELOG.md`, `docs/protocol.md`, and `docs/e2e-checklist.md`
+
+## Developers
 
 ```sh
 xcodegen generate
 swift test --package-path Packages/GTAControlCore
-xcodebuild -project GTARemote.xcodeproj -scheme GTABridge -destination 'platform=macOS' test
-xcodebuild -project GTARemote.xcodeproj -scheme GTARemote -destination 'platform=iOS Simulator,name=iPhone 17 Pro' test
+xcodebuild -project GTARemote.xcodeproj -scheme GTABridge -configuration Release build
 ```
 
-Per la pubblicazione iOS, imposta `ASC_KEY_FILEPATH` all'esterno del repository prima di eseguire Fastlane. Non archiviare chiavi API, profili o IPA nel repository.
+The iPhone TestFlight lanes are in `fastlane/Fastfile`. Set `ASC_KEY_FILEPATH` to an App Store Connect API key stored outside this repository before using them. Never commit API keys, provisioning profiles, archives, or build products.
 
-## Limiti verificati
+## Scope and known limits
 
-Le macro testuali non fanno parte della UX. Questa release resta intenzionalmente limitata a GTA V Legacy, Story Mode e rete locale.
+- GTA V Legacy and Story Mode only.
+- Local Wi-Fi only. There is no internet relay.
+- GTA Online is not supported.
+- Text cheat macros were deliberately excluded because they were not reliable in the supported Wine setup.

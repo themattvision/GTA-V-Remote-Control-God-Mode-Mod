@@ -1,23 +1,23 @@
-# Protocollo GTA Remote v3
+# GTA Remote Protocol v3
 
-## Trasporto
+## Transport
 
-- Discovery Bonjour: `_gtactrl._tcp`
-- Trasporto: TCP tramite Network.framework
-- Framing: prefisso big-endian UInt32 seguito dal payload
-- Dimensione massima frame: 16.384 byte
+- Bonjour discovery: `_gtactrl._tcp`
+- Transport: TCP through Network.framework
+- Framing: big-endian `UInt32` length prefix followed by the payload
+- Maximum frame size: 16,384 bytes
 - Protocol version: 3
 
-## Comandi autorizzati
+## Allowed commands
 
-Il peer non puo inviare keycode, testo, shell command o native hash. Puo inviare soltanto un valore dell'enum `TrainerCommand` compilato in entrambi i target oppure i comandi espliciti `setGodMode(enabled:)` e `setWreckPreservation(enabled:)`.
+A peer cannot send key codes, text, shell commands, or native hashes. It can send only a `TrainerCommand` enum value compiled into both targets, or one of the explicit commands `setGodMode(enabled:)` and `setWreckPreservation(enabled:)`.
 
-Ogni comando contiene `clientID`, `requestID`, sequence monotona e protocol version. Il bridge rifiuta versioni incompatibili, replay, client non associati e piu di 20 comandi al secondo.
+Every command includes `clientID`, `requestID`, a monotonic sequence number, and a protocol version. The bridge rejects incompatible versions, replayed messages, unpaired clients, and more than 20 commands per second.
 
-I comandi diretti sono limitati a Invincibilita e Conserva i veicoli distrutti. Il bridge li traduce in un file locale che il modulo ScriptHook legge nel thread di GTA. Il modulo rimanda uno `TrainerStateSnapshot` con il valore che il motore di gioco ha effettivamente confermato. La conservazione riguarda soltanto i veicoli guidati dal giocatore e il modulo ne limita il numero a 12. Se lo stato non arriva o diventa vecchio, l'iPhone disabilita il toggle invece di inventare un valore locale.
+The direct commands are limited to God Mode and destroyed-vehicle preservation. The bridge translates them into a local file read by the ScriptHook module on the GTA game thread. The module returns a `TrainerStateSnapshot` containing the value confirmed by the game engine. Preservation applies only to vehicles driven by the player, and the module caps the number at 12. If state does not arrive or becomes stale, the iPhone disables the toggle instead of inventing a local value.
 
 ## Pairing
 
-Il primo pairing usa uno scambio X25519 e mostra la stessa impronta numerica su iPhone e Mac. L'approvazione avviene sul Mac. Il segreto persistente viene salvato nei Keychain e le sessioni successive derivano nuove chiavi con HKDF. I payload autenticati usano ChaChaPoly.
+First pairing uses an X25519 exchange and shows the same numeric fingerprint on the iPhone and Mac. The user approves it on the Mac. The persistent secret is stored in Keychain, and later sessions derive new keys with HKDF. Authenticated payloads use ChaChaPoly.
 
-L'MVP puo includere un transport locale diagnostico in chiaro soltanto dietro una build flag Debug esplicita. Non deve essere attivo in Release.
+The MVP may include a clear-text local diagnostic transport only behind an explicit Debug build flag. It must never be active in Release.

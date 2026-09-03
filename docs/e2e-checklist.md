@@ -1,39 +1,39 @@
-# Checklist E2E
+# End-to-end checklist
 
-## Gate Wine, superato il 30 agosto 2026
+## Wine gate, passed on 30 August 2026
 
-- GTA avviato con `GTA5.exe -scOfflineOnly`.
-- ScriptHookV e NativeTrainer caricati.
-- `CGEvent` F4 ha aperto visivamente Native Trainer.
-- NUM2 ha spostato la selezione da PLAYER a WEAPON.
-- NUM5 ha aperto WEAPON OPTIONS.
-- Backspace ha riportato alla lista principale.
-- Ogni input ha emesso key-down e key-up.
-- Macro testuali escluse: `FUGITIVE` e `LAWYERUP` sintetici non sono stati riconosciuti dal cheat parser Wine. `LAWYERUP` non ha ridotto la stella impostata via trainer e la P finale ha aperto la pausa.
+- GTA launched with `GTA5.exe -scOfflineOnly`.
+- ScriptHook V and NativeTrainer loaded.
+- `CGEvent` F4 visibly opened Native Trainer.
+- NUM2 moved the selection from PLAYER to WEAPON.
+- NUM5 opened WEAPON OPTIONS.
+- Backspace returned to the main list.
+- Every input emitted key-down and key-up events.
+- Text macros were excluded: synthetic `FUGITIVE` and `LAWYERUP` were not recognized by the Wine cheat parser. `LAWYERUP` did not reduce the trainer-set wanted level, and its final P opened the pause menu.
 
-## MVP, stato del 30 agosto 2026
+## MVP status, 30 August 2026
 
-- [x] Build iOS firmata, installata e avviata sull'iPhone 17 di Matteo.
-- [x] Build macOS Release firmata, verificata e installata in `~/Applications/GTABridge.app`.
-- [x] Listener TCP avviato automaticamente senza aprire il menu della barra dei menu.
-- [x] Core: 10 test in 3 suite.
-- [x] Bridge: 8 test in 3 suite, comprese tutte le 11 mappature tastiera.
-- [x] iPhone: 8 test in 1 suite.
-- [x] Telecomando iPhone senza tab e senza scroll, con Apri / chiudi menu grande, quattro frecce, swipe sul D-pad, Indietro piccolo a sinistra e Conferma grande a destra.
-- [x] Redesign UI iPhone applicato con backdrop a gradiente, niente neon, niente box generale del telecomando, Liquid Glass solo sui pulsanti e componenti SwiftUI interni stile shadcn.
-- [x] Scorciatoie, Trucchi e macro press-only rimosse dalla UI iPhone.
-- [x] Replay, frame alterato e client non associato rifiutati dal protocollo e dai test.
-- [ ] Consenso Rete locale accettato sul Mac e sull'iPhone fisico.
-- [ ] Bridge scoperto via Bonjour senza IP manuale.
-- [ ] Pairing approvato e riconnessione successiva.
-- [ ] Tap F4 su iPhone apre realmente Native Trainer.
-- [ ] Pad, Select e Back controllano realmente l'overlay.
-- [ ] Disconnessione mostrata entro due secondi.
+- [x] iOS build signed, installed, and launched on Matteo's iPhone 17.
+- [x] macOS Release build signed, verified, and installed at `~/Applications/GTABridge.app`.
+- [x] TCP listener starts automatically without opening the menu-bar menu.
+- [x] Core: 10 tests in 3 suites.
+- [x] Bridge: 8 tests in 3 suites, including all 11 keyboard mappings.
+- [x] iPhone: 8 tests in 1 suite.
+- [x] iPhone remote with no tabs or scrolling, a large open/close menu control, four arrows, D-pad swipe, small Back on the left, and large Confirm on the right.
+- [x] iPhone UI redesign with a gradient backdrop, no neon, no overall remote box, Liquid Glass only on buttons, and internal SwiftUI components in a shadcn-like style.
+- [x] Shortcuts, cheats, and press-only macros removed from the iPhone UI.
+- [x] Replayed messages, altered frames, and unpaired clients rejected by the protocol and tests.
+- [ ] Local Network permission accepted on the Mac and physical iPhone.
+- [ ] Bridge discovered through Bonjour without a manual IP address.
+- [ ] Pairing approved and later reconnection confirmed.
+- [ ] F4 tap on the iPhone actually opens Native Trainer.
+- [ ] Pad, Select, and Back actually control the overlay.
+- [ ] Disconnection is shown within two seconds.
 
-## Controlli diretti v0.3.0, da verificare dopo un riavvio sicuro di GTA
+## Direct controls v0.3.0, verify after a safe GTA restart
 
-- [x] Protocollo v3, bridge e iPhone compilati e firmati.
-- [x] Nuovo `GTARemoteBridge.asi` compilato per Windows x64 e preparato come `GTARemoteBridge.asi.next` senza toccare il modulo usato dalla partita corrente.
-- [ ] Dopo aver salvato e riavviato GTA, `ScriptHookV.log` registra il nuovo modulo e `GTARemoteBridge.state` contiene `wreckPreservation` e `preservedWreckCount`.
-- [ ] Attivare Conserva i veicoli distrutti dall'iPhone, guidare un veicolo, distruggerlo e verificare che resti nella scena.
-- [ ] Spegnere la funzione e verificare che il contatore torni a zero e la pulizia torni a GTA.
+- [x] Protocol v3, bridge, and iPhone compile and are signed.
+- [ ] A Windows x64 `GTARemoteBridge.asi` build is available from the included source. No binary is attached to this release.
+- [ ] After saving and restarting GTA, `ScriptHookV.log` records the new module and `GTARemoteBridge.state` contains `wreckPreservation` and `preservedWreckCount`.
+- [ ] Turn on Preserve destroyed vehicles from the iPhone, drive a vehicle, destroy it, and confirm that it remains in the scene.
+- [ ] Turn the feature off and confirm that the counter returns to zero and GTA cleanup resumes.

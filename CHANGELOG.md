@@ -1,10 +1,9 @@
 # Changelog
 
-## v0.3.0, 3 settembre 2026
+## v0.3.0, 3 September 2026
 
-- Prima release pubblica di GTA Remote.
-- App iPhone `0.3.0 (4)` disponibile tramite TestFlight, soggetta all'approvazione Apple per i tester esterni.
-- Pacchetto macOS `GTABridge` firmato con Developer ID, notarizzato e graffettato.
-- Plancia iPhone fissa con apertura menu, D-pad tap e swipe, Indietro e Conferma.
-- Documentazione pubblica per pairing locale e modulo companion `GTARemoteBridge`.
-- Il sorgente del modulo ScriptHook V è incluso, il binario `.asi` non è incluso perché non è stato prodotto con un toolchain locale verificabile.
+- First public handoff of GTA Remote for GTA V Legacy Story Mode.
+- iPhone build `0.3.0 (4)` is available to internal TestFlight testers. The public TestFlight link is enabled and awaiting Apple Beta App Review for external installation.
+- Added the notarized and stapled macOS `GTABridge-0.3.0-macos.zip` release asset.
+- Added the source and installation guide for the separate `GTARemoteBridge.asi` ScriptHook V companion module. No prebuilt `.asi` binary is included.
+- Documented the local Wi-Fi, Story Mode-only product boundary and the secure pairing flow.

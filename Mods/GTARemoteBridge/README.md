@@ -1,37 +1,75 @@
 # GTARemoteBridge
 
-Questo modulo ScriptHook V per la modalità Storia rende Invincibilità e Conserva i veicoli distrutti funzioni dirette e verificabili.
+`GTARemoteBridge.asi` is an additional ScriptHook V module for GTA V Legacy Story Mode. It provides direct, state-backed God Mode and destroyed-vehicle preservation controls.
 
-Il bridge macOS scrive una richiesta limitata a `setGodMode` o `setWreckPreservation` nella cartella GTA. Il modulo la legge dal game thread, chiama le native GTA necessarie e pubblica ogni 250 ms lo stato reale. Il telefono riceve quel risultato dal bridge, quindi non deduce mai lo stato dalla posizione del menu Native Trainer.
+It does not replace, alter, or patch `NativeTrainer.asi` or any existing God Mode mod. It is a separate companion module and can coexist with NativeTrainer.
 
-## File locali
+This is a developer component. No prebuilt `.asi` file is included in the repository or the v0.3.0 release.
 
-Nella stessa cartella di `GTA5.exe`:
+## What the module does
+
+The macOS bridge writes one restricted request, either `setGodMode` or `setWreckPreservation`, to the GTA folder. This module reads the request on the GTA game thread, calls the necessary GTA natives, and publishes the confirmed state every 250 ms.
+
+The phone receives the state from the bridge. It does not guess the state from the position of a NativeTrainer menu.
+
+When destroyed-vehicle preservation is on, the module retains up to 12 vehicles driven by the player. It does not scan or freeze all traffic vehicles. When the feature is turned off, normal GTA cleanup resumes.
+
+## Requirements
+
+You need all of the following before building:
+
+1. GTA V Legacy, for Story Mode only.
+2. The official ScriptHook V SDK.
+3. A Windows x64 C++ compiler.
+4. A working ScriptHook V installation, including `ScriptHookV.dll` and `dinput8.dll` next to `GTA5.exe`.
+
+The included `ScriptHookV.def` creates the small import library required by the MinGW toolchain. It uses ordinals verified against `ScriptHookV.dll` for GTA Legacy 1.0.1180.2.
+
+## Build and install
+
+1. Build the source in this folder with the official ScriptHook V SDK and your Windows x64 compiler.
+2. Confirm that the build output is named exactly `GTARemoteBridge.asi`.
+3. Save your game and close GTA V completely.
+4. Open the folder that contains `GTA5.exe`.
+5. Copy `GTARemoteBridge.asi` into that folder, next to `GTA5.exe`, `ScriptHookV.dll`, and `dinput8.dll`.
+6. Start GTA V Legacy, then enter Story Mode.
+
+The module should not be installed into a subfolder. All four files named above must be in the same GTA installation folder.
+
+## Local command and state files
+
+The module uses two local files in the same folder as `GTA5.exe`.
+
+`GTARemoteBridge.command` is written by GTA Bridge:
 
 ```text
-GTARemoteBridge.command
 version=1
 requestID=<uuid>
 action=setGodMode
 enabled=1
 ```
 
+`GTARemoteBridge.state` is written by the module:
+
 ```text
-GTARemoteBridge.state
 version=1
 godMode=1
 wreckPreservation=1
 preservedWreckCount=2
 ```
 
-Il file `.state` è valido soltanto se viene aggiornato negli ultimi due secondi. Questo evita di mostrare un vecchio stato quando GTA si chiude o il modulo smette di funzionare.
+The state file is valid only when it was updated within the last two seconds. This prevents the phone from showing stale information after GTA closes or the module stops working.
 
-Quando `setWreckPreservation` e attivo, il modulo conserva fino a 12 veicoli che il giocatore ha guidato. Non scandisce o blocca tutti i veicoli del traffico, cosi la scena resta stabile e quando lo spegni la pulizia torna al motore di GTA.
+Do not manually edit either file while GTA is running.
 
-## Build e installazione
+## Update safely
 
-Il sorgente richiede l'SDK di ScriptHook V dal sito ufficiale e un compilatore Windows x64. `ScriptHookV.def` genera la piccola import library necessaria per il toolchain MinGW, usando gli ordinali della `ScriptHookV.dll` già verificata per GTA Legacy 1.0.1180.2. Il risultato deve chiamarsi `GTARemoteBridge.asi` e trovarsi accanto a `GTA5.exe`, `ScriptHookV.dll` e `dinput8.dll`.
+1. Save your game and close GTA V completely.
+2. Copy the new build to the GTA folder as `GTARemoteBridge.asi.next`.
+3. Rename the active `GTARemoteBridge.asi` to a recoverable backup name.
+4. Rename `GTARemoteBridge.asi.next` to `GTARemoteBridge.asi`.
+5. Start GTA V Legacy again.
 
-Per aggiornare il modulo mentre GTA e in esecuzione, preparare prima il nuovo binario come `GTARemoteBridge.asi.next`. Solo dopo che la partita e stata salvata e GTA e chiuso, spostare il file attivo in un backup recuperabile e rinominare `.asi.next` nel nome attivo. Script Hook carica i plugin solo all'avvio.
+ScriptHook loads modules only at game launch. Never replace an active ASI file while GTA is open.
 
-Non sostituisce `NativeTrainer.asi`: i due moduli convivono. È pensato esclusivamente per GTA V Legacy in modalità Storia, mai per GTA Online.
+This module is for local, personal Story Mode use only. GTA Online is not supported.
