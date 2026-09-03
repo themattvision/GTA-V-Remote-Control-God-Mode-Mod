@@ -25,7 +25,7 @@ function Resolve-Tool([string]$Directory, [string[]]$Names) {
             return $candidate
         }
     }
-    throw "Tool richiesto non trovato in $Directory: $($Names -join ', ')"
+    throw "Tool richiesto non trovato in ${Directory}: $($Names -join ', ')"
 }
 
 $dllTool = Resolve-Tool $MingwBin @("x86_64-w64-mingw32-dlltool.exe", "dlltool.exe")

@@ -50,8 +50,41 @@ jobs:
           $installer = '${{ runner.temp }}\GodModeInstaller\installer\Windows-GodMode-Mod-Remote-Control-Setup-v${{ inputs.version }}.exe'
           if (-not (Test-Path $mod)) { throw "GTARemoteBridge.asi missing" }
           if (-not (Test-Path $installer)) { throw "Installer missing" }
+          $modInfo = & 'C:\msys64\mingw64\bin\objdump.exe' -p $mod | Out-String
+          if ($modInfo -notmatch 'pei-x86-64') { throw "GTARemoteBridge.asi is not a Windows x64 PE binary" }
+          if ($modInfo -notmatch 'ScriptHookV.dll') { throw "GTARemoteBridge.asi does not import ScriptHookV.dll" }
           Get-FileHash $mod -Algorithm SHA256
           Get-FileHash $installer -Algorithm SHA256
+
+      - name: Smoke test guided install and uninstall
+        shell: pwsh
+        run: |
+          $installer = '${{ runner.temp }}\GodModeInstaller\installer\Windows-GodMode-Mod-Remote-Control-Setup-v${{ inputs.version }}.exe'
+          $fakeGta = Join-Path '${{ runner.temp }}' 'Fake GTA V'
+          $appDirectory = Join-Path '${{ runner.temp }}' 'Installed GodMode Remote'
+          New-Item $fakeGta -ItemType Directory -Force | Out-Null
+          @('GTA5.exe', 'ScriptHookV.dll', 'dinput8.dll', 'NativeTrainer.asi') | ForEach-Object {
+            Set-Content (Join-Path $fakeGta $_) 'installer-smoke-test'
+          }
+
+          $installProcess = Start-Process $installer -ArgumentList @(
+            '/VERYSILENT',
+            '/SUPPRESSMSGBOXES',
+            '/NORESTART',
+            "/GTAPath=$fakeGta",
+            "/DIR=$appDirectory"
+          ) -Wait -PassThru
+          if ($installProcess.ExitCode -ne 0) { throw "Installer exited with $($installProcess.ExitCode)" }
+          if (-not (Test-Path (Join-Path $appDirectory 'GodMode Mod Remote Control.exe'))) { throw 'Windows app was not installed' }
+          if (-not (Test-Path (Join-Path $fakeGta 'GTARemoteBridge.asi'))) { throw 'GTA bridge was not installed' }
+
+          $uninstaller = Join-Path $appDirectory 'unins000.exe'
+          $uninstallProcess = Start-Process $uninstaller -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART') -Wait -PassThru
+          if ($uninstallProcess.ExitCode -ne 0) { throw "Uninstaller exited with $($uninstallProcess.ExitCode)" }
+          if (Test-Path (Join-Path $fakeGta 'GTARemoteBridge.asi')) { throw 'GTA bridge was not removed' }
+          @('ScriptHookV.dll', 'dinput8.dll', 'NativeTrainer.asi') | ForEach-Object {
+            if (-not (Test-Path (Join-Path $fakeGta $_))) { throw "Shared dependency $_ was incorrectly removed" }
+          }
 
       - name: Upload installer
         uses: actions/upload-artifact@v4
