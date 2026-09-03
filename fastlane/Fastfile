@@ -119,7 +119,7 @@ platform :ios do
         contact_phone: "+393486197083",
         contact_email: "info@matteozampieri.com",
         demo_account_required: false,
-        notes: "Nessun account richiesto. L'app cerca un bridge macOS sulla rete locale e mostra la plancia telecomando. Per il test completo serve il bridge locale GTABridge; senza bridge si puo comunque verificare onboarding, ricerca rete locale e UI principale."
+        notes: "No account required. The app looks for GTA Remote Control on the local network and shows the remote interface. A full test needs GTA Remote Control running on the Mac; without it, onboarding, local-network discovery, and the main interface can still be checked."
       },
       demo_account_required: false,
       uses_non_exempt_encryption: false,

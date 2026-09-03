@@ -80,7 +80,7 @@ final class BridgeListener: BridgeClientSessionDelegate {
             parameters.includePeerToPeer = true
             let listener = try NWListener(using: parameters)
             listener.service = NWListener.Service(
-                name: "GTA Bridge",
+                name: "GTA Remote Control",
                 type: ProtocolConstants.bonjourType,
                 domain: nil,
                 txtRecord: nil

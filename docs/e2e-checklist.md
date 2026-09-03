@@ -14,7 +14,7 @@
 ## MVP status, 30 August 2026
 
 - [x] iOS build signed, installed, and launched on Matteo's iPhone 17.
-- [x] macOS Release build signed, verified, and installed at `~/Applications/GTABridge.app`.
+- [x] macOS Release build signed, verified, and installed as GTA Remote Control.
 - [x] TCP listener starts automatically without opening the menu-bar menu.
 - [x] Core: 10 tests in 3 suites.
 - [x] Bridge: 8 tests in 3 suites, including all 11 keyboard mappings.

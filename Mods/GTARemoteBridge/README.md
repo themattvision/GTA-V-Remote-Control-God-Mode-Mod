@@ -40,7 +40,7 @@ The module should not be installed into a subfolder. All four files named above 
 
 The module uses two local files in the same folder as `GTA5.exe`.
 
-`GTARemoteBridge.command` is written by GTA Bridge:
+`GTARemoteBridge.command` is written by GTA Remote Control:
 
 ```text
 version=1

@@ -1,6 +1,6 @@
 # GTA Remote
 
-GTA Remote is a local, two-part remote control for GTA V Legacy Story Mode. Your iPhone is the controller. A small Mac menu-bar app, GTA Bridge, is the local connection between the phone and the game.
+GTA Remote is a local, two-part remote control for GTA V Legacy Story Mode. Your iPhone is the controller. GTA Remote Control is the Mac menu-bar app that connects the phone to the game.
 
 It is for personal, offline use on your own Wi-Fi network. It does not support GTA Online.
 
@@ -8,12 +8,12 @@ It is for personal, offline use on your own Wi-Fi network. It does not support G
 
 Before downloading anything, make sure you have all four items below:
 
-1. A Mac running macOS 15 or later. GTA Bridge runs on this Mac.
+1. A Mac running macOS 15 or later. GTA Remote Control runs on this Mac.
 2. An iPhone running iOS 18 or later. GTA Remote runs on this iPhone.
 3. GTA V Legacy installed for Story Mode, with ScriptHook V if you want to build and use the optional companion module.
 4. The Mac and iPhone connected to the same Wi-Fi network. Turn off any VPN on either device while pairing.
 
-The iPhone app cannot work by itself. Leave GTA Bridge running on the Mac while you use the iPhone.
+The iPhone app cannot work by itself. Leave GTA Remote Control running on the Mac while you use the iPhone.
 
 ## Install the iPhone app
 
@@ -28,37 +28,37 @@ Build `0.3.0 (4)` is valid and ready for internal testers. The public TestFlight
 
 Do not download an IPA from GitHub. TestFlight is the normal and supported iPhone installation route.
 
-## Install GTA Bridge on the Mac
+## Install GTA Remote Control on the Mac
 
 1. Open the [v0.3.0 release page](../../releases/tag/v0.3.0).
-2. Under Assets, download `GTABridge-0.3.0-macos.zip`.
-3. Open the downloaded ZIP file in Finder. It expands to `GTABridge.app`.
-4. Drag `GTABridge.app` into the Mac's **Applications** folder.
-5. Open `GTABridge.app` from Applications.
+2. Under Assets, download `GTARemoteControl-0.3.0-macos.dmg`.
+3. Open the downloaded DMG file in Finder.
+4. Drag GTA Remote Control onto the Applications folder shown in the installation window.
+5. Open GTA Remote Control from Applications.
 
-GTA Bridge is a menu-bar app. It does not open a normal window or stay in the Dock. Look at the right side of the macOS menu bar for its icon. Keep it running while you use GTA Remote.
+GTA Remote Control is a menu-bar app. It does not open a normal window or stay in the Dock. Look at the right side of the macOS menu bar for its icon. Keep it running while you use GTA Remote.
 
 The download is signed with Developer ID, notarized by Apple, and stapled for offline Gatekeeper verification.
 
 ### Allow the two Mac permissions
 
-On first use, GTA Bridge may ask for permissions. Allow both:
+On first use, GTA Remote Control may ask for permissions. Allow both:
 
 1. Local Network: this lets the Mac find your iPhone on the same Wi-Fi network.
-2. Accessibility: this lets GTA Bridge send the supported controller input to the local GTA window.
+2. Accessibility: this lets GTA Remote Control send the supported controller input to the local GTA window.
 
-If macOS does not show the Accessibility prompt, open System Settings, go to Privacy & Security, then Accessibility, and enable GTA Bridge. Quit and reopen GTA Bridge after changing the permission.
+If macOS does not show the Accessibility prompt, open System Settings, go to Privacy & Security, then Accessibility, and enable GTA Remote Control. Quit and reopen GTA Remote Control after changing the permission.
 
 ## Pair the iPhone and Mac
 
-1. Start GTA Bridge on the Mac and leave it running in the menu bar.
+1. Start GTA Remote Control on the Mac and leave it running in the menu bar.
 2. Confirm that the Mac and iPhone are on the same Wi-Fi network. Do not use a guest network.
 3. Open GTA Remote on the iPhone.
 4. Select the Mac when it appears.
 5. Compare the pairing number shown on both devices.
 6. Approve the pairing on the Mac only when the two numbers match.
 
-If the Mac does not appear, check these items in order: both apps are open, both devices use the same non-guest Wi-Fi, both VPNs are off, and Local Network access is allowed on both devices. Then quit and reopen GTA Bridge and GTA Remote.
+If the Mac does not appear, check these items in order: both apps are open, both devices use the same non-guest Wi-Fi, both VPNs are off, and Local Network access is allowed on both devices. Then quit and reopen GTA Remote Control and GTA Remote.
 
 ## Optional ScriptHook V companion module
 
@@ -86,7 +86,7 @@ This section is for developers who can build the module from the included source
 5. Put `GTARemoteBridge.asi` in that exact folder, next to `GTA5.exe`, `ScriptHookV.dll`, and `dinput8.dll`.
 6. Start GTA V Legacy and enter Story Mode.
 
-When the module is running, GTA Bridge writes `GTARemoteBridge.command` in the same GTA folder. The module reads it and publishes `GTARemoteBridge.state` there. Do not edit either file while GTA is open.
+When the module is running, GTA Remote Control writes `GTARemoteBridge.command` in the same GTA folder. The module reads it and publishes `GTARemoteBridge.state` there. Do not edit either file while GTA is open.
 
 ### Update the module safely
 
@@ -101,7 +101,7 @@ ScriptHook loads ASI modules only when GTA starts. Do not try to hot-swap the mo
 ## What is included in this repository
 
 - iPhone source: `iOS/GTARemote`
-- Mac bridge source: `macOS/GTABridge`
+- Mac remote-control source: `macOS/GTABridge`
 - Shared secure local protocol: `Packages/GTAControlCore`
 - ScriptHook V companion module source: `Mods/GTARemoteBridge`
 - Release and protocol notes: `CHANGELOG.md`, `docs/protocol.md`, and `docs/e2e-checklist.md`

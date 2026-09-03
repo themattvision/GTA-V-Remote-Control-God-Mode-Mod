@@ -14,7 +14,7 @@ struct GTABridgeApp: App {
         MenuBarExtra {
             BridgeMenuView(model: model)
         } label: {
-            Label("GTA Bridge", systemImage: menuBarIcon)
+            Label("GTA Remote Control", systemImage: menuBarIcon)
         }
         .menuBarExtraStyle(.window)
     }

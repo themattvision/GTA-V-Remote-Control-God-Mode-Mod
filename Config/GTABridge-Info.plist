@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>GTA Bridge</string>
+	<string>GTA Remote Control</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,6 +27,6 @@
 		<string>_gtactrl._tcp</string>
 	</array>
 	<key>NSLocalNetworkUsageDescription</key>
-	<string>GTA Bridge riceve comandi autorizzati dall'iPhone nella stessa rete Wi-Fi.</string>
+	<string>GTA Remote Control receives authorized commands from your iPhone on the same Wi-Fi network.</string>
 </dict>
 </plist>
