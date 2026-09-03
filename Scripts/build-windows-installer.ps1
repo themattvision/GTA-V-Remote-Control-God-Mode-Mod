@@ -2,7 +2,8 @@ param(
     [string]$Version = "0.3.0",
     [string]$OutputDirectory = (Join-Path $env:USERPROFILE "Downloads\GodMode Mod Remote Control Windows"),
     [string]$MingwBin = "C:\msys64\mingw64\bin",
-    [string]$InnoSetupCompiler = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
+    [string]$InnoSetupCompiler = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe",
+    [string]$PrebuiltModBinary = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -28,8 +29,12 @@ function Resolve-Tool([string]$Directory, [string[]]$Names) {
     throw "Tool richiesto non trovato in ${Directory}: $($Names -join ', ')"
 }
 
-$dllTool = Resolve-Tool $MingwBin @("x86_64-w64-mingw32-dlltool.exe", "dlltool.exe")
-$compiler = Resolve-Tool $MingwBin @("x86_64-w64-mingw32-g++.exe", "g++.exe")
+if ($PrebuiltModBinary -eq "") {
+    $dllTool = Resolve-Tool $MingwBin @("x86_64-w64-mingw32-dlltool.exe", "dlltool.exe")
+    $compiler = Resolve-Tool $MingwBin @("x86_64-w64-mingw32-g++.exe", "g++.exe")
+} elseif (-not (Test-Path $PrebuiltModBinary)) {
+    throw "Modulo precompilato non trovato: $PrebuiltModBinary"
+}
 if (-not (Test-Path $InnoSetupCompiler)) {
     throw "Tool richiesto non trovato: $InnoSetupCompiler"
 }
@@ -54,26 +59,30 @@ dotnet publish $project `
 
 Copy-Item (Join-Path $repositoryRoot "Windows\README.md") $publishDirectory
 
-$dllToolOutput = & $dllTool `
-    -d (Join-Path $modSourceDirectory "ScriptHookV.def") `
-    -l $importLibrary 2>&1
-$dllToolExitCode = $LASTEXITCODE
-$dllToolOutput | Write-Host
-if ($dllToolExitCode -ne 0) { throw "Creazione import library ScriptHook V fallita con codice $dllToolExitCode." }
+if ($PrebuiltModBinary -ne "") {
+    Copy-Item $PrebuiltModBinary $modBinary
+} else {
+    $dllToolOutput = & $dllTool `
+        -d (Join-Path $modSourceDirectory "ScriptHookV.def") `
+        -l $importLibrary 2>&1
+    $dllToolExitCode = $LASTEXITCODE
+    $dllToolOutput | Write-Host
+    if ($dllToolExitCode -ne 0) { throw "Creazione import library ScriptHook V fallita con codice $dllToolExitCode." }
 
-$compilerOutput = & $compiler `
-    -std=c++17 `
-    -O2 `
-    -shared `
-    -static-libgcc `
-    -static-libstdc++ `
-    -o $modBinary `
-    (Join-Path $modSourceDirectory "GTARemoteBridge.cpp") `
-    $importLibrary `
-    "-Wl,--subsystem,windows" 2>&1
-$compilerExitCode = $LASTEXITCODE
-$compilerOutput | Write-Host
-if ($compilerExitCode -ne 0) { throw "Build di GTARemoteBridge.asi fallita con codice $compilerExitCode." }
+    $compilerOutput = & $compiler `
+        -std=c++17 `
+        -O2 `
+        -shared `
+        -static-libgcc `
+        -static-libstdc++ `
+        -o $modBinary `
+        (Join-Path $modSourceDirectory "GTARemoteBridge.cpp") `
+        $importLibrary `
+        "-Wl,--subsystem,windows" 2>&1
+    $compilerExitCode = $LASTEXITCODE
+    $compilerOutput | Write-Host
+    if ($compilerExitCode -ne 0) { throw "Build di GTARemoteBridge.asi fallita con codice $compilerExitCode." }
+}
 
 & $InnoSetupCompiler `
     "/DAppVersion=$Version" `

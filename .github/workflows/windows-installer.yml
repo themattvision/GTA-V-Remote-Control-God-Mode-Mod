@@ -37,6 +37,18 @@ jobs:
         shell: pwsh
         run: choco install innosetup --no-progress -y
 
+      - name: Compile ScriptHook companion module
+        shell: msys2 {0}
+        run: |
+          output_directory="$(cygpath -u '${{ runner.temp }}')/GodModeInstaller/prebuilt"
+          mkdir -p "$output_directory"
+          dlltool -d Mods/GTARemoteBridge/ScriptHookV.def -l "$output_directory/libScriptHookV.a"
+          g++ -std=c++17 -O2 -shared -static-libgcc -static-libstdc++ \
+            -o "$output_directory/GTARemoteBridge.asi" \
+            Mods/GTARemoteBridge/GTARemoteBridge.cpp \
+            "$output_directory/libScriptHookV.a" \
+            -Wl,--subsystem,windows
+
       - name: Build app, ASI module and installer
         shell: pwsh
         run: >-
@@ -45,6 +57,7 @@ jobs:
           -OutputDirectory '${{ runner.temp }}\GodModeInstaller'
           -MingwBin '${{ steps.msys2.outputs.msys2-location }}\mingw64\bin'
           -InnoSetupCompiler 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe'
+          -PrebuiltModBinary '${{ runner.temp }}\GodModeInstaller\prebuilt\GTARemoteBridge.asi'
 
       - name: Inspect Windows binaries
         shell: pwsh
