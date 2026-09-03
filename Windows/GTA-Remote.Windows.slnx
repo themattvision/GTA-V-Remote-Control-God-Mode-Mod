@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="GTAControlCore.Windows/GTAControlCore.Windows.csproj" />
+  <Project Path="GTAControlCore.Windows.Tests/GTAControlCore.Windows.Tests.csproj" />
+  <Project Path="GTABridge.Windows/GTABridge.Windows.csproj" />
+</Solution>

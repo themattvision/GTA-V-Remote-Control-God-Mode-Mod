@@ -14,7 +14,7 @@
 ## MVP status, 30 August 2026
 
 - [x] iOS build signed, installed, and launched on Matteo's iPhone 17.
-- [x] macOS Release build signed, verified, and installed as GTA Remote Control.
+- [x] macOS Release build signed, verified, and installed as GodMode Mod Remote Control.
 - [x] TCP listener starts automatically without opening the menu-bar menu.
 - [x] Core: 10 tests in 3 suites.
 - [x] Bridge: 8 tests in 3 suites, including all 11 keyboard mappings.
@@ -37,3 +37,15 @@
 - [ ] After saving and restarting GTA, `ScriptHookV.log` records the new module and `GTARemoteBridge.state` contains `wreckPreservation` and `preservedWreckCount`.
 - [ ] Turn on Preserve destroyed vehicles from the iPhone, drive a vehicle, destroy it, and confirm that it remains in the scene.
 - [ ] Turn the feature off and confirm that the counter returns to zero and GTA cleanup resumes.
+
+## Windows bridge, added 3 September 2026
+
+- [x] .NET protocol tests pass, including the same fixed X25519, fingerprint, and HKDF vector asserted by Swift.
+- [x] Windows tray project restores and compiles for `net8.0-windows10.0.19041.0` with zero warnings.
+- [x] The `win-x64` self-contained publish completes and contains the native crypto dependency.
+- [ ] Extract the ZIP on a Windows 10 or 11 x64 PC and launch `GodMode Mod Remote Control.exe`.
+- [ ] Allow Windows Defender Firewall only on the active private network and confirm that the iPhone discovers `_gtactrl._tcp` without a manual IP address.
+- [ ] Compare and approve the same six-digit pairing code on Windows and iPhone, then restart both apps and verify encrypted reconnection.
+- [ ] Select the real directory containing `GTA5.exe` and confirm that the delayed F4 test is rejected while another app is in front.
+- [ ] Put GTA V Legacy Story Mode in front and visually confirm F4, NUM2, NUM8, NUM4, NUM6, NUM5, Backspace, NUM0, NUM9, NUM3, and NUM+.
+- [ ] With `GTARemoteBridge.asi` loaded, confirm fresh state publication and direct-control command files next to `GTA5.exe`.

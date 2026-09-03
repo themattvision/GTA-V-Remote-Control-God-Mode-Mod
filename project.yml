@@ -54,11 +54,11 @@ targets:
     info:
       path: Config/GTABridge-Info.plist
       properties:
-        CFBundleDisplayName: GTA Remote Control
+        CFBundleDisplayName: GodMode Mod Remote Control
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         LSUIElement: true
-        NSLocalNetworkUsageDescription: GTA Remote Control receives authorized commands from your iPhone on the same Wi-Fi network.
+        NSLocalNetworkUsageDescription: GodMode Mod Remote Control receives authorized commands from your iPhone on the same Wi-Fi network.
         NSBonjourServices:
           - _gtactrl._tcp
     dependencies:

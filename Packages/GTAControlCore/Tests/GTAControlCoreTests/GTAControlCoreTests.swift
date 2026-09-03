@@ -170,6 +170,10 @@ struct PairingAndSecureChannelTests {
 
         #expect(fingerprint == reverseFingerprint)
         #expect(fingerprint.description == repeatedFingerprint.description)
+        #expect(first.publicKey.rawRepresentation.hexString == "8f40c5adb68f25624ae5b214ea767a6ec94d829d3d7b5e1ad1ba6f3e2138285f")
+        #expect(second.publicKey.rawRepresentation.hexString == "bf64bf0c8e37b3ecf7d4ae82e592a25c37b8a78ce450a721f3079c3372796e5c")
+        #expect(fingerprint.value == 105_389)
+        #expect(try first.deriveSessionKey(with: second.publicKey).rawRepresentation.hexString == "4165ae8cd29550fc66a3438e0aa958952294d9459235761beb0240c35bba5ae0")
     }
 
     @Test("ChaChaPoly round-trips and detects tampering without consuming sequence")
@@ -204,6 +208,10 @@ struct PairingAndSecureChannelTests {
             try receiver.open(packet)
         }
     }
+}
+
+private extension Data {
+    var hexString: String { map { String(format: "%02x", $0) }.joined() }
 }
 
 @Suite("Rate limiting")

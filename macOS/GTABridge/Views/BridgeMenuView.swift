@@ -69,7 +69,7 @@ private struct BridgeHero: View {
                 .background(.tint.opacity(0.14), in: .circle)
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("GTA Remote Control")
+                Text("GodMode Mod Remote Control")
                     .font(.headline)
                 Text(headline)
                     .font(.subheadline)

@@ -1,6 +1,6 @@
-# GTA V Remote Control, God Mode Companion Mod
+# GodMode Mod Remote Control
 
-GTA V Remote Control, God Mode Companion Mod is a local, two-part remote control for GTA V Legacy Story Mode. Your iPhone is the controller. GTA Remote Control is the Mac menu-bar app that connects the phone to the game.
+GodMode Mod Remote Control is a local, two-part remote control for GTA V Legacy Story Mode. Your iPhone is the controller. GodMode Mod Remote Control is the Windows tray app or Mac menu-bar app that connects the phone to the game.
 
 It is for personal, offline use on your own Wi-Fi network. It does not support GTA Online.
 
@@ -8,12 +8,12 @@ It is for personal, offline use on your own Wi-Fi network. It does not support G
 
 Before downloading anything, make sure you have all four items below:
 
-1. A Mac running macOS 15 or later. GTA Remote Control runs on this Mac.
+1. A Windows 10 or 11 x64 PC, or a Mac running macOS 15 or later. GodMode Mod Remote Control runs on this computer.
 2. An iPhone running iOS 18 or later. GTA Remote runs on this iPhone.
 3. GTA V Legacy installed for Story Mode, with ScriptHook V if you want to build and use the optional companion module.
-4. The Mac and iPhone connected to the same Wi-Fi network. Turn off any VPN on either device while pairing.
+4. The computer and iPhone connected to the same Wi-Fi network. Turn off any VPN on either device while pairing.
 
-The iPhone app cannot work by itself. Leave GTA Remote Control running on the Mac while you use the iPhone.
+The iPhone app cannot work by itself. Leave GodMode Mod Remote Control running on the PC or Mac while you use the iPhone.
 
 ## Install the iPhone app
 
@@ -28,38 +28,52 @@ Build `0.3.0 (4)` is valid and ready for internal testers. The public TestFlight
 
 Do not download an IPA from GitHub. TestFlight is the normal and supported iPhone installation route.
 
-## Install GTA Remote Control on the Mac
+## Install GodMode Mod Remote Control on Windows
+
+The Windows bridge is included in source form under [`Windows`](Windows). A release build can be created on Windows with .NET 8 SDK:
+
+```powershell
+.\Scripts\build-windows.ps1
+```
+
+The script tests the solution and creates `Windows-GodMode-Mod-Remote-Control-v0.3.0.zip` in Downloads. Extract the complete ZIP, start `GodMode Mod Remote Control.exe`, and allow it only on private networks if Windows Defender Firewall asks.
+
+The app lives in the Windows notification area. Open its icon menu to select the folder containing `GTA5.exe`, approve pairing, inspect connection status, or run the delayed F4 test. The generated development build is not code-signed, so SmartScreen may show a warning.
+
+See the [Windows installation and safety guide](Windows/README.md) for the complete procedure.
+
+## Install GodMode Mod Remote Control on the Mac
 
 1. Open the [v0.3.0 release page](../../releases/tag/v0.3.0).
-2. Under Assets, download `GTARemoteControl-0.3.0-macos.dmg`.
+2. Under Assets, download `Mac-GodMode-Mod-Remote-Control-v0.3.0.dmg`.
 3. Open the downloaded DMG file in Finder.
 4. Double-click `1. START HERE.html` first. It shows the complete Mac, iPhone, permissions, Wi-Fi, and pairing guide in the right order.
-5. Drag GTA Remote Control onto the Applications folder shown in the installation window.
-6. Open GTA Remote Control from Applications.
+5. Drag GodMode Mod Remote Control onto the Applications folder shown in the installation window.
+6. Open GodMode Mod Remote Control from Applications.
 
-GTA Remote Control is a menu-bar app. It does not open a normal window or stay in the Dock. Look at the right side of the macOS menu bar for its icon. Keep it running while you use GTA Remote.
+GodMode Mod Remote Control is a menu-bar app. It does not open a normal window or stay in the Dock. Look at the right side of the macOS menu bar for its icon. Keep it running while you use GTA Remote.
 
 The download is signed with Developer ID, notarized by Apple, and stapled for offline Gatekeeper verification.
 
 ### Allow the two Mac permissions
 
-On first use, GTA Remote Control may ask for permissions. Allow both:
+On first use, GodMode Mod Remote Control may ask for permissions. Allow both:
 
 1. Local Network: this lets the Mac find your iPhone on the same Wi-Fi network.
-2. Accessibility: this lets GTA Remote Control send the supported controller input to the local GTA window.
+2. Accessibility: this lets GodMode Mod Remote Control send the supported controller input to the local GTA window.
 
-If macOS does not show the Accessibility prompt, open System Settings, go to Privacy & Security, then Accessibility, and enable GTA Remote Control. Quit and reopen GTA Remote Control after changing the permission.
+If macOS does not show the Accessibility prompt, open System Settings, go to Privacy & Security, then Accessibility, and enable GodMode Mod Remote Control. Quit and reopen GodMode Mod Remote Control after changing the permission.
 
-## Pair the iPhone and Mac
+## Pair the iPhone and computer
 
-1. Start GTA Remote Control on the Mac and leave it running in the menu bar.
-2. Confirm that the Mac and iPhone are on the same Wi-Fi network. Do not use a guest network.
+1. Start GodMode Mod Remote Control on the PC or Mac and leave it running in the notification area or menu bar.
+2. Confirm that the computer and iPhone are on the same Wi-Fi network. Do not use a guest network.
 3. Open GTA Remote on the iPhone.
-4. Select the Mac when it appears.
+4. Select the computer when it appears.
 5. Compare the pairing number shown on both devices.
-6. Approve the pairing on the Mac only when the two numbers match.
+6. Approve the pairing on the computer only when the two numbers match.
 
-If the Mac does not appear, check these items in order: both apps are open, both devices use the same non-guest Wi-Fi, both VPNs are off, and Local Network access is allowed on both devices. Then quit and reopen GTA Remote Control and GTA Remote.
+If the computer does not appear, check these items in order: both apps are open, both devices use the same non-guest Wi-Fi, both VPNs are off, and Local Network access is allowed. On Windows, also confirm that the firewall allows the bridge on private networks. Then quit and reopen GodMode Mod Remote Control and GTA Remote.
 
 ## Optional ScriptHook V companion module
 
@@ -87,7 +101,7 @@ This section is for developers who can build the module from the included source
 5. Put `GTARemoteBridge.asi` in that exact folder, next to `GTA5.exe`, `ScriptHookV.dll`, and `dinput8.dll`.
 6. Start GTA V Legacy and enter Story Mode.
 
-When the module is running, GTA Remote Control writes `GTARemoteBridge.command` in the same GTA folder. The module reads it and publishes `GTARemoteBridge.state` there. Do not edit either file while GTA is open.
+When the module is running, GodMode Mod Remote Control writes `GTARemoteBridge.command` in the same GTA folder. The module reads it and publishes `GTARemoteBridge.state` there. Do not edit either file while GTA is open.
 
 ### Update the module safely
 
@@ -103,6 +117,7 @@ ScriptHook loads ASI modules only when GTA starts. Do not try to hot-swap the mo
 
 - iPhone source: `iOS/GTARemote`
 - Mac remote-control source: `macOS/GTABridge`
+- Windows remote-control source and tests: `Windows/GTABridge.Windows` and `Windows/GTAControlCore.Windows.Tests`
 - Shared secure local protocol: `Packages/GTAControlCore`
 - ScriptHook V companion module source: `Mods/GTARemoteBridge`
 - Release and protocol notes: `CHANGELOG.md`, `docs/protocol.md`, and `docs/e2e-checklist.md`
@@ -113,6 +128,8 @@ ScriptHook loads ASI modules only when GTA starts. Do not try to hot-swap the mo
 xcodegen generate
 swift test --package-path Packages/GTAControlCore
 xcodebuild -project GTARemote.xcodeproj -scheme GTABridge -configuration Release build
+# On Windows PowerShell:
+.\Scripts\build-windows.ps1
 ```
 
 The iPhone TestFlight lanes are in `fastlane/Fastfile`. Set `ASC_KEY_FILEPATH` to an App Store Connect API key stored outside this repository before using them. Never commit API keys, provisioning profiles, archives, or build products.

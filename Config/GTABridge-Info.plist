@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>GTA Remote Control</string>
+	<string>GodMode Mod Remote Control</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,6 +27,6 @@
 		<string>_gtactrl._tcp</string>
 	</array>
 	<key>NSLocalNetworkUsageDescription</key>
-	<string>GTA Remote Control receives authorized commands from your iPhone on the same Wi-Fi network.</string>
+	<string>GodMode Mod Remote Control receives authorized commands from your iPhone on the same Wi-Fi network.</string>
 </dict>
 </plist>

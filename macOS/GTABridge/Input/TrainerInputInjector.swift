@@ -10,7 +10,7 @@ enum TrainerInputError: Error, Equatable, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .accessibilityDenied:
-            "Allow Accessibility for GTA Remote Control before sending commands."
+            "Allow Accessibility for GodMode Mod Remote Control before sending commands."
         case .eventCreationFailed:
             "macOS non ha creato l'evento tastiera richiesto."
         }
