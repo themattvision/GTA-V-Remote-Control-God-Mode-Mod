@@ -1,5 +1,7 @@
 # GTA Remote Protocol v3
 
+[Italiano](protocol.it.md) | English
+
 ## Transport
 
 - Bonjour discovery: `_gtactrl._tcp`
@@ -18,6 +20,6 @@ The direct commands are limited to God Mode and destroyed-vehicle preservation. 
 
 ## Pairing
 
-First pairing uses an X25519 exchange and shows the same numeric fingerprint on the iPhone and Mac. The user approves it on the Mac. The persistent secret is stored in Keychain, and later sessions derive new keys with HKDF. Authenticated payloads use ChaChaPoly.
+First pairing uses an X25519 exchange and shows the same numeric fingerprint on the iPhone and computer. The user approves it on the computer. The persistent secret is stored in Keychain on macOS or protected with DPAPI on Windows. Later sessions derive new keys with HKDF. Authenticated payloads use ChaCha20-Poly1305.
 
 The MVP may include a clear-text local diagnostic transport only behind an explicit Debug build flag. It must never be active in Release.

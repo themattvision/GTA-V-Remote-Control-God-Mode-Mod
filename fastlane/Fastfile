@@ -28,7 +28,52 @@ def cert_sha1_for(profile_path)
 end
 
 platform :ios do
-  desc "Archivia GTARemote Release e carica l'IPA su TestFlight"
+  desc "Aggiorna le informazioni TestFlight in italiano e inglese senza distribuire build / Updates Italian and English TestFlight information without distributing builds"
+  lane :localize_beta do
+    asc_api_key
+
+    app = Spaceship::ConnectAPI.get_app(app_id: APP_STORE_ID).to_models.first
+    UI.user_error!("App Store Connect non ha restituito l'app #{APP_STORE_ID}") unless app
+
+    localized_app_info = {
+      "it" => {
+        feedbackEmail: "info@matteozampieri.com",
+        description: "Telecomando locale per controllare dal telefono un bridge macOS o Windows sulla stessa rete Wi-Fi. Nessun account richiesto."
+      },
+      "en-US" => {
+        feedbackEmail: "info@matteozampieri.com",
+        description: "Local remote control for a macOS or Windows bridge on the same Wi-Fi network. No account required."
+      }
+    }
+
+    existing_by_locale = app.get_beta_app_localizations.to_h { |localization| [localization.locale, localization] }
+    localized_app_info.each do |locale, attributes|
+      localization = existing_by_locale[locale]
+      if localization
+        Spaceship::ConnectAPI.patch_beta_app_localizations(
+          localization_id: localization.id,
+          attributes: attributes
+        )
+      else
+        Spaceship::ConnectAPI.post_beta_app_localizations(
+          app_id: app.id,
+          attributes: attributes.merge(locale: locale)
+        )
+      end
+      UI.success("TestFlight #{locale} aggiornato")
+    end
+
+    verified_by_locale = app.get_beta_app_localizations.to_h { |localization| [localization.locale, localization] }
+    localized_app_info.each do |locale, attributes|
+      localization = verified_by_locale[locale]
+      UI.user_error!("TestFlight #{locale} non è presente dopo l'aggiornamento") unless localization
+      UI.user_error!("Descrizione TestFlight #{locale} non verificata") unless localization.description == attributes[:description]
+      UI.user_error!("Email TestFlight #{locale} non verificata") unless localization.feedback_email == attributes[:feedbackEmail]
+      UI.success("TestFlight #{locale} verificato")
+    end
+  end
+
+  desc "Archivia GTARemote Release e carica l'IPA su TestFlight / Archives GTARemote Release and uploads the IPA to TestFlight"
   lane :beta do
     UI.user_error!("Manca la chiave App Store Connect: #{ASC_KEY_FILEPATH}") unless File.exist?(ASC_KEY_FILEPATH)
 
@@ -89,7 +134,7 @@ platform :ios do
     )
   end
 
-  desc "Distribuisce il build gia caricato al gruppo esterno Beta pubblica"
+  desc "Distribuisce il build gia caricato al gruppo esterno Beta pubblica / Distributes the uploaded build to the external Beta pubblica group"
   lane :public_beta do
     api_key = asc_api_key
 
@@ -106,10 +151,14 @@ platform :ios do
       notify_external_testers: false,
       changelog: "Nuova plancia telecomando: menu, frecce, indietro e conferma con UI Liquid Glass sobria.",
       beta_app_feedback_email: "info@matteozampieri.com",
-      beta_app_description: "Telecomando locale per controllare dal telefono un bridge macOS sulla stessa rete Wi-Fi. Nessun account richiesto.",
+      beta_app_description: "Telecomando locale per controllare dal telefono un bridge macOS o Windows sulla stessa rete Wi-Fi. Nessun account richiesto.",
       localized_app_info: {
         "it" => {
-          description: "Telecomando locale per controllare dal telefono un bridge macOS sulla stessa rete Wi-Fi. Nessun account richiesto.",
+          description: "Telecomando locale per controllare dal telefono un bridge macOS o Windows sulla stessa rete Wi-Fi. Nessun account richiesto.",
+          feedback_email: "info@matteozampieri.com"
+        },
+        "en-US" => {
+          description: "Local remote control for a macOS or Windows bridge on the same Wi-Fi network. No account required.",
           feedback_email: "info@matteozampieri.com"
         }
       },
@@ -119,7 +168,7 @@ platform :ios do
         contact_phone: "+393486197083",
         contact_email: "info@matteozampieri.com",
         demo_account_required: false,
-        notes: "No account required. The app looks for GodMode Mod Remote Control on the local network and shows the remote interface. A full test needs GodMode Mod Remote Control running on the Mac; without it, onboarding, local-network discovery, and the main interface can still be checked."
+        notes: "No account required. The app looks for GodMode Mod Remote Control on the local network and shows the remote interface. A full test needs GodMode Mod Remote Control running on macOS or Windows; without it, onboarding, local-network discovery, and the main interface can still be checked."
       },
       demo_account_required: false,
       uses_non_exempt_encryption: false,

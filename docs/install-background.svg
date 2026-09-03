@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="470" viewBox="0 0 720 470">
+  <defs>
+    <filter id="doodle" x="-20%" y="-50%" width="140%" height="200%">
+      <feDropShadow dx="0" dy="2" stdDeviation="1" flood-color="#000000" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="720" height="470" fill="#f7f7f7"/>
+  <g fill="none" stroke="#161616" stroke-linecap="round" stroke-linejoin="round" filter="url(#doodle)">
+    <path d="M285 285 C320 272, 357 299, 397 285" stroke-width="15"/>
+    <path d="M394 285 L356 252" stroke-width="15"/>
+    <path d="M394 285 L356 319" stroke-width="15"/>
+    <path d="M288 291 C323 279, 356 304, 389 292" stroke-width="4" opacity="0.72"/>
+  </g>
+</svg>

@@ -13,7 +13,9 @@ internal static class Program
         if (!isFirstInstance)
         {
             MessageBox.Show(
-                "GodMode Mod Remote Control è già in esecuzione nell'area di notifica.",
+                LocalizedText.Choose(
+                    "GodMode Mod Remote Control è già in esecuzione nell'area di notifica.",
+                    "GodMode Mod Remote Control is already running in the notification area."),
                 "GodMode Mod Remote Control",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
@@ -34,7 +36,9 @@ internal static class Program
         if (!GameInstallationLocator.IsValid(gameDirectory))
         {
             MessageBox.Show(
-                "La cartella scelta dall'installer non contiene GTA5.exe.",
+                LocalizedText.Choose(
+                    "La cartella scelta dall'installer non contiene GTA5.exe.",
+                    "The folder selected by the setup does not contain GTA5.exe."),
                 "GodMode Mod Remote Control",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);

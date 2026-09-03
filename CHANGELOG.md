@@ -1,18 +1,21 @@
 # Changelog
 
-## Unreleased, 3 September 2026
+[Italiano](CHANGELOG.it.md) | English
 
-- Added a native Windows 10/11 x64 tray bridge compatible with the existing iPhone protocol v3.
-- Added Bonjour discovery, X25519 pairing, HKDF-SHA256 session derivation, ChaCha20-Poly1305 packets, replay protection, DPAPI-protected paired keys, and the existing 20-command-per-second limit.
+## v0.3.1, 3 September 2026
+
+- Published the complete Windows 10/11 x64 tray bridge and guided installer from the same source commit as this release tag.
+- Added Bonjour discovery, X25519 pairing, HKDF-SHA256 session derivation, ChaCha20-Poly1305 packets, replay protection, DPAPI-protected paired keys, and the existing 20-command-per-second limit on Windows.
 - Added guarded `SendInput` keyboard control. Commands are accepted only while `GTA5.exe` from the configured game directory is in the foreground.
-- Added the ScriptHook companion state and command-file integration, Windows tests, and a guided Windows setup.
-- The setup detects GTA V Legacy, installs the prebuilt `GTARemoteBridge.asi`, imports the user-selected official ScriptHook V ZIP when needed, configures autostart and the private-network firewall rule, backs up replaced files, and safely removes only our module on uninstall.
+- Added the ScriptHook companion state and command-file integration. The Windows setup includes the compiled x64 `GTARemoteBridge.asi`, imports the user-selected official ScriptHook V ZIP when needed, configures autostart and the private-network firewall rule, backs up replaced files, and safely removes only our module during uninstall.
+- Localized the guided Windows setup and notification-area app in Italian and English, selected automatically from the Windows display language.
+- Added complete public installation, safety, protocol, module, release, and verification documentation in Italian and English.
+- Added English TestFlight beta metadata without replacing or resubmitting iPhone build `0.3.0 (4)`.
+- Added a reproducible local script for the signed, notarized, and stapled macOS DMG.
 
 ## v0.3.0, 3 September 2026
 
 - First public handoff of GTA Remote for GTA V Legacy Story Mode.
-- iPhone build `0.3.0 (4)` is available to internal TestFlight testers. The public TestFlight link is enabled and awaiting Apple Beta App Review for external installation.
-- Added the notarized and stapled macOS `Mac-GodMode-Mod-Remote-Control-v0.3.0.dmg` release asset with a centered hand-drawn drag-to-Applications arrow and a visible `1. START HERE.html` guide for Mac, iPhone, permissions, Wi-Fi, and pairing.
-- Named the desktop release assets with the operating system first: `Windows-GodMode-Mod-Remote-Control-Setup-v0.3.0.exe` and `Mac-GodMode-Mod-Remote-Control-v0.3.0.dmg`.
-- Added the source and installation guide for the separate `GTARemoteBridge.asi` ScriptHook V companion module. The Windows setup now includes the compiled module.
-- Documented the local Wi-Fi, Story Mode-only product boundary and the secure pairing flow.
+- iPhone build `0.3.0 (4)` was made available to internal TestFlight testers. The public TestFlight link was enabled and submitted for Apple Beta App Review.
+- Added the notarized and stapled macOS DMG with a visible `1. START HERE.html` guide.
+- Documented the local Wi-Fi, Story Mode-only boundary and secure pairing flow.

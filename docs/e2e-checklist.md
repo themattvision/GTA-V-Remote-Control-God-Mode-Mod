@@ -1,5 +1,7 @@
 # End-to-end checklist
 
+[Italiano](e2e-checklist.it.md) | English
+
 ## Wine gate, passed on 30 August 2026
 
 - GTA launched with `GTA5.exe -scOfflineOnly`.
@@ -30,7 +32,7 @@
 - [ ] Pad, Select, and Back actually control the overlay.
 - [ ] Disconnection is shown within two seconds.
 
-## Direct controls v0.3.0, verify after a safe GTA restart
+## Direct controls, verify after a safe GTA restart
 
 - [x] Protocol v3, bridge, and iPhone compile and are signed.
 - [x] CI builds `GTARemoteBridge.asi` as a Windows x64 PE binary, verifies its ScriptHook V import, and includes it in the guided setup.

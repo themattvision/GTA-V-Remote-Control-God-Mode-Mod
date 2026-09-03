@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../GTAControlCore.Windows/GTAControlCore.Windows.csproj" />
+    <Compile Include="../GTABridge.Windows/LocalizedText.cs" Link="LocalizedText.cs" />
     <Compile Include="../GTABridge.Windows/Game/GameModStateProvider.cs" Link="GameModStateProvider.cs" />
   </ItemGroup>
 </Project>

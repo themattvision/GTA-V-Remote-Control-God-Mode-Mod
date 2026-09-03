@@ -36,7 +36,9 @@ internal sealed class TrainerInputInjector(ForegroundGameGuard foregroundGuard)
             },
         };
         if (SendInput(1, [input], Marshal.SizeOf<INPUT>()) != 1)
-            throw new Win32Exception(Marshal.GetLastWin32Error(), "Windows non ha inviato il tasto a GTA V.");
+            throw new Win32Exception(Marshal.GetLastWin32Error(), LocalizedText.Choose(
+                "Windows non ha inviato il tasto a GTA V.",
+                "Windows did not send the key to GTA V."));
     }
 
     [StructLayout(LayoutKind.Sequential)]

@@ -5,23 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>1. START HERE: GodMode Mod Remote Control</title>
     <style>
-      body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 680px; margin: 48px auto; padding: 0 24px; color: #171717; line-height: 1.55; }
-      h1 { font-size: 30px; margin-bottom: 8px; }
+      :root { color-scheme: light; }
+      body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 720px; margin: 48px auto; padding: 0 24px 64px; color: #171717; line-height: 1.55; }
+      h1 { font-size: 30px; margin: 0 0 8px; text-wrap: balance; }
+      .language { display: flex; gap: 8px; margin-bottom: 28px; }
+      button { border: 1px solid #c8c8c8; background: #fff; color: #171717; padding: 9px 14px; border-radius: 10px; font: inherit; font-weight: 650; cursor: pointer; }
+      button[aria-pressed="true"] { background: #171717; color: #fff; border-color: #171717; }
       .step { padding: 16px 18px; margin: 12px 0; border-left: 6px solid #ffcf00; background: #f5f5f5; border-radius: 10px; }
       .step strong { display: block; }
-      a { color: #0066cc; font-weight: 600; word-break: break-all; }
+      a { color: #0066cc; font-weight: 600; word-break: break-word; }
       .notice { padding: 16px 18px; margin-top: 24px; background: #fff8d8; border-radius: 10px; }
+      [hidden] { display: none !important; }
     </style>
   </head>
   <body>
-    <h1>Start here</h1>
-    <p>Set up GodMode Mod Remote Control in this exact order. This is for GTA V Legacy Story Mode on your own local Wi-Fi only.</p>
-    <div class="step"><strong>1. Install the Mac app.</strong> In the DMG window, drag GodMode Mod Remote Control onto Applications. Then open GodMode Mod Remote Control from Applications. It stays in the menu bar at the top-right of your screen.</div>
-    <div class="step"><strong>2. Allow the Mac permissions.</strong> When macOS asks, allow Local Network and Accessibility. If Accessibility does not appear, open System Settings, Privacy &amp; Security, Accessibility, then enable GodMode Mod Remote Control and reopen it.</div>
-    <div class="step"><strong>3. Install the iPhone app.</strong> On your iPhone, open this TestFlight link: <a href="https://testflight.apple.com/join/TfJtcUy3">https://testflight.apple.com/join/TfJtcUy3</a></div>
-    <div class="step"><strong>4. Put both devices on the same Wi-Fi.</strong> Do not use a guest network. Turn off VPNs while pairing.</div>
-    <div class="step"><strong>5. Pair safely.</strong> Open the remote on the iPhone, select your computer, and approve only if the same number is shown on both devices.</div>
-    <div class="notice"><strong>TestFlight status:</strong> the public link is enabled. External installation is waiting for Apple Beta App Review as of 3 September 2026. Internal testers can use build 0.3.0 (4) now.</div>
-    <p>Need the optional ScriptHook V companion module? Read the full guide at <a href="https://github.com/themattvision/GTA-V-Remote-Control-God-Mode-Mod">github.com/themattvision/GTA-V-Remote-Control-God-Mode-Mod</a>.</p>
+    <nav class="language" aria-label="Language selection">
+      <button type="button" data-language="it">Italiano</button>
+      <button type="button" data-language="en">English</button>
+    </nav>
+
+    <main data-copy="it" lang="it">
+      <h1>Inizia da qui</h1>
+      <p>Configura GodMode Mod Remote Control in questo ordine. Funziona soltanto con GTA V Legacy in modalità Storia sulla tua rete Wi-Fi locale.</p>
+      <div class="step"><strong>1. Installa l'app Mac.</strong> Nella finestra della DMG trascina GodMode Mod Remote Control su Applicazioni. Poi aprila dalla cartella Applicazioni. Rimane nella barra dei menu in alto a destra.</div>
+      <div class="step"><strong>2. Consenti i permessi sul Mac.</strong> Quando macOS lo chiede, consenti Rete locale e Accessibilità. Se Accessibilità non compare, apri Impostazioni di Sistema, Privacy e sicurezza, Accessibilità, abilita GodMode Mod Remote Control e riaprila.</div>
+      <div class="step"><strong>3. Installa l'app iPhone.</strong> Apri sull'iPhone questo link TestFlight: <a href="https://testflight.apple.com/join/TfJtcUy3">https://testflight.apple.com/join/TfJtcUy3</a></div>
+      <div class="step"><strong>4. Collega i dispositivi alla stessa Wi-Fi.</strong> Non usare una rete ospiti e disattiva le VPN durante il pairing.</div>
+      <div class="step"><strong>5. Abbina in sicurezza.</strong> Apri GTA Remote sull'iPhone, seleziona il computer e approva soltanto se sui due dispositivi compare lo stesso numero.</div>
+      <div class="notice"><strong>Stato TestFlight:</strong> il link pubblico è attivo. Al 3 settembre 2026 l'installazione esterna è ancora in attesa della Beta App Review di Apple. I tester interni possono già usare il build 0.3.0 (4).</div>
+      <p>Per il modulo aggiuntivo ScriptHook V consulta la <a href="https://github.com/themattvision/GTA-V-Remote-Control-God-Mode-Mod/blob/v0.3.1/README.it.md">guida completa in italiano</a>.</p>
+    </main>
+
+    <main data-copy="en" lang="en">
+      <h1>Start here</h1>
+      <p>Set up GodMode Mod Remote Control in this exact order. It works only with GTA V Legacy Story Mode on your own local Wi-Fi.</p>
+      <div class="step"><strong>1. Install the Mac app.</strong> In the DMG window, drag GodMode Mod Remote Control onto Applications. Then open it from Applications. It stays in the menu bar at the top-right of your screen.</div>
+      <div class="step"><strong>2. Allow the Mac permissions.</strong> When macOS asks, allow Local Network and Accessibility. If Accessibility does not appear, open System Settings, Privacy &amp; Security, Accessibility, enable GodMode Mod Remote Control, and reopen it.</div>
+      <div class="step"><strong>3. Install the iPhone app.</strong> Open this TestFlight link on your iPhone: <a href="https://testflight.apple.com/join/TfJtcUy3">https://testflight.apple.com/join/TfJtcUy3</a></div>
+      <div class="step"><strong>4. Put both devices on the same Wi-Fi.</strong> Do not use a guest network. Turn off VPNs while pairing.</div>
+      <div class="step"><strong>5. Pair safely.</strong> Open GTA Remote on the iPhone, select the computer, and approve only when the same number appears on both devices.</div>
+      <div class="notice"><strong>TestFlight status:</strong> the public link is enabled. External installation is still waiting for Apple Beta App Review as of 3 September 2026. Internal testers can use build 0.3.0 (4) now.</div>
+      <p>For the optional ScriptHook V companion module, read the <a href="https://github.com/themattvision/GTA-V-Remote-Control-God-Mode-Mod/blob/v0.3.1/README.md">complete English guide</a>.</p>
+    </main>
+
+    <script>
+      const copies = [...document.querySelectorAll('[data-copy]')];
+      const buttons = [...document.querySelectorAll('[data-language]')];
+      const setLanguage = (language) => {
+        copies.forEach((copy) => { copy.hidden = copy.dataset.copy !== language; });
+        buttons.forEach((button) => { button.setAttribute('aria-pressed', button.dataset.language === language ? 'true' : 'false'); });
+        document.documentElement.lang = language;
+      };
+      buttons.forEach((button) => button.addEventListener('click', () => setLanguage(button.dataset.language)));
+      setLanguage(navigator.language.toLowerCase().startsWith('it') ? 'it' : 'en');
+    </script>
   </body>
 </html>

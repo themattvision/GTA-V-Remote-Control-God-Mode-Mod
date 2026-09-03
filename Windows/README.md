@@ -1,46 +1,49 @@
-# GodMode Mod Remote Control per Windows
+# GodMode Mod Remote Control for Windows
 
-Il bridge Windows collega l'app GTA Remote su iPhone a GTA V Legacy in modalità Storia. Funziona nella tray di Windows, senza una finestra principale.
+[Italiano](README.it.md) | English
 
-## Installazione
+The Windows bridge connects GTA Remote on the iPhone to GTA V Legacy Story Mode. It runs in the Windows notification area without a main window.
+The setup and notification-area menu automatically use Italian when Windows is set to Italian, and English otherwise.
 
-1. Scarica `Windows-GodMode-Mod-Remote-Control-Setup-v0.3.0.exe` dalla release GitHub.
-2. Chiudi completamente GTA V e avvia il setup.
-3. Conferma la cartella che contiene `GTA5.exe`. Il setup prova a trovarla da solo.
-4. Se ScriptHook V non è già completo, premi il collegamento ufficiale mostrato, scarica lo ZIP e selezionalo nel setup. Non devi estrarlo.
-5. Conferma l'uso esclusivo in modalità Storia e completa l'installazione.
-6. Cerca GodMode Mod Remote Control nell'area di notifica, anche dentro il menu delle icone nascoste.
-7. Apri GTA Remote sull'iPhone, confronta il codice a sei cifre e approva il pairing dal menu del bridge.
+## Installation
 
-Il setup installa l'app Windows, `GTARemoteBridge.asi`, i componenti ufficiali presenti nello ZIP di ScriptHook V, l'avvio automatico e la regola firewall limitata alle reti private. Prima di sostituire file già presenti crea un backup. La disinstallazione rimuove la nostra mod ma lascia i file ScriptHook condivisi, che potrebbero servire ad altre mod.
+1. Download `Windows-GodMode-Mod-Remote-Control-Setup-v0.3.1.exe` from the GitHub release.
+2. Close GTA V completely, then start the setup.
+3. Confirm the folder containing `GTA5.exe`. The setup tries to find it automatically.
+4. If ScriptHook V is incomplete, use the official link shown by the setup, download the ZIP, and select it. You do not need to extract it.
+5. Confirm that you will use the mod only in Story Mode and complete the installation.
+6. Find GodMode Mod Remote Control in the notification area, including the hidden-icons menu.
+7. Open GTA Remote on the iPhone, compare the six-digit code, and approve pairing from the bridge menu.
 
-ScriptHook V non può essere incluso nel setup perché il suo autore vieta la redistribuzione. Per questo rimane un solo passaggio esterno, il download dal sito ufficiale indicato dalla procedura guidata.
+The setup installs the Windows app, `GTARemoteBridge.asi`, the official components found in the ScriptHook V ZIP, automatic startup, and a firewall rule limited to private networks. It backs up existing files before replacing them. Uninstall removes our mod but leaves shared ScriptHook files that other mods may need.
 
-Se Windows SmartScreen segnala l'eseguibile, il motivo è che il build di sviluppo non è firmato. Non disattivare SmartScreen a livello globale.
+ScriptHook V cannot be included in the setup because its author prohibits redistribution. The only separate step is downloading it from the official site linked by the guided setup.
 
-## Uso sicuro
+The current Windows build is not code-signed, so SmartScreen may warn about the executable. Do not disable SmartScreen globally.
 
-Il bridge invia tasti soltanto quando il processo in primo piano è `GTA5.exe` e l'eseguibile appartiene alla cartella autorizzata. Supporta soltanto i comandi compilati nell'app e non accetta tasti, testo, shell command o native hash arbitrari dalla rete.
+## Safe use
 
-La modalità diretta tramite `GTARemoteBridge.asi` usa gli stessi file locali del bridge Mac. Il setup colloca il file `.asi` accanto a `GTA5.exe`. Lo stato è considerato valido soltanto quando `GTARemoteBridge.state` è aggiornato da meno di due secondi.
+The bridge sends keys only when `GTA5.exe` from the authorized game folder is the foreground process. It supports only commands compiled into the app and does not accept arbitrary key codes, text, shell commands, or native hashes from the network.
 
-GTA Online non è supportato.
+Direct mode through `GTARemoteBridge.asi` uses the same local files as the Mac bridge. The setup places the `.asi` file next to `GTA5.exe`. State is valid only while `GTARemoteBridge.state` was updated within the last two seconds.
 
-## Verifica rapida
+GTA Online is not supported.
 
-1. Avvia GTA V Legacy e entra in modalità Storia.
-2. Nel menu del bridge scegli `Test F4 tra 3 secondi`.
-3. Riporta GTA V in primo piano entro tre secondi.
-4. Verifica che F4 apra o chiuda Native Trainer.
+## Quick verification
 
-Per il test completo usa `docs/e2e-checklist.md` nel repository.
+1. Start GTA V Legacy and enter Story Mode.
+2. Choose `Test F4 in 3 seconds` from the bridge menu.
+3. Bring GTA V to the foreground within three seconds.
+4. Confirm that F4 opens or closes Native Trainer.
 
-## Build dell'installer da sorgente
+Use [`docs/e2e-checklist.md`](../docs/e2e-checklist.md) for the complete test.
 
-Richiede PowerShell, .NET 8 SDK, MinGW x64 con binutils e Inno Setup 6:
+## Build the installer from source
+
+Requires PowerShell, the .NET 8 SDK, MinGW x64 with binutils, and Inno Setup 6:
 
 ```powershell
 .\Scripts\build-windows-installer.ps1
 ```
 
-Lo script esegue i test, pubblica l'app self-contained, compila `GTARemoteBridge.asi` e crea `Windows-GodMode-Mod-Remote-Control-Setup-v0.3.0.exe` nella cartella Download dell'utente.
+The script runs the tests, publishes the self-contained app, builds `GTARemoteBridge.asi`, and creates `Windows-GodMode-Mod-Remote-Control-Setup-v0.3.1.exe` in the user's Downloads folder.

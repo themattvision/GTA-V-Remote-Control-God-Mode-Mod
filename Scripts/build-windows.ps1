@@ -1,4 +1,5 @@
 param(
+    [string]$Version = "0.3.1",
     [string]$OutputDirectory = (Join-Path $env:USERPROFILE "Downloads\GodMode Mod Remote Control Windows")
 )
 
@@ -7,7 +8,7 @@ $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $solution = Join-Path $repositoryRoot "Windows\GTA-Remote.Windows.slnx"
 $project = Join-Path $repositoryRoot "Windows\GTABridge.Windows\GTABridge.Windows.csproj"
 $publishDirectory = Join-Path $OutputDirectory "GodMode Mod Remote Control"
-$archive = Join-Path $OutputDirectory "Windows-GodMode-Mod-Remote-Control-v0.3.0.zip"
+$archive = Join-Path $OutputDirectory "Windows-GodMode-Mod-Remote-Control-v$Version.zip"
 
 dotnet test $solution -c Release
 
@@ -20,12 +21,14 @@ dotnet publish $project `
     -c Release `
     -r win-x64 `
     --self-contained true `
+    -p:Version=$Version `
     -p:PublishSingleFile=true `
     -p:IncludeNativeLibrariesForSelfExtract=true `
     -p:DebugType=None `
     -o $publishDirectory
 
 Copy-Item (Join-Path $repositoryRoot "Windows\README.md") $publishDirectory
+Copy-Item (Join-Path $repositoryRoot "Windows\README.it.md") $publishDirectory
 if (Test-Path $archive) {
     Remove-Item $archive -Force
 }

@@ -6,7 +6,7 @@ on:
       version:
         description: Product version
         required: true
-        default: 0.3.0
+        default: 0.3.1
 
 permissions:
   contents: read
@@ -104,7 +104,10 @@ jobs:
             if (Test-Path $installLog) { Get-Content $installLog }
             throw "Installer exited with $($installProcess.ExitCode)"
           }
-          if (-not (Test-Path (Join-Path $appDirectory 'GodMode Mod Remote Control.exe'))) { throw 'Windows app was not installed' }
+          $installedApp = Join-Path $appDirectory 'GodMode Mod Remote Control.exe'
+          if (-not (Test-Path $installedApp)) { throw 'Windows app was not installed' }
+          $installedVersion = (Get-Item $installedApp).VersionInfo.ProductVersion
+          if ($installedVersion -notlike '${{ inputs.version }}*') { throw "Installed app version $installedVersion does not match ${{ inputs.version }}" }
           if (-not (Test-Path (Join-Path $fakeGta 'GTARemoteBridge.asi'))) { throw 'GTA bridge was not installed' }
 
           $uninstaller = Join-Path $appDirectory 'unins000.exe'

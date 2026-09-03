@@ -99,7 +99,9 @@ internal sealed class BridgeClientSession : IAsyncDisposable
         WireMessage message;
         lock (_channelGate)
         {
-            if (_secureChannel is null) throw new InvalidDataException("Pairing richiesto.");
+            if (_secureChannel is null) throw new InvalidDataException(LocalizedText.Choose(
+                "Pairing richiesto.",
+                "Pairing required."));
             message = _secureChannel.Open(frame);
         }
         await HandleSecureAsync(message, cancellationToken).ConfigureAwait(false);
@@ -110,9 +112,13 @@ internal sealed class BridgeClientSession : IAsyncDisposable
         switch (message.Payload)
         {
             case HelloMessage hello:
-                if (hello.Role != PeerRole.Controller) throw new InvalidDataException("Il peer non è un controller.");
+                if (hello.Role != PeerRole.Controller) throw new InvalidDataException(LocalizedText.Choose(
+                    "Il peer non è un controller.",
+                    "The peer is not a controller."));
                 if (_presentedClientID is not null && _presentedClientID != hello.PeerID)
-                    throw new InvalidDataException("L'identità del client è cambiata durante la connessione.");
+                    throw new InvalidDataException(LocalizedText.Choose(
+                        "L'identità del client è cambiata durante la connessione.",
+                        "The client identity changed during the connection."));
                 _presentedClientID = hello.PeerID;
                 await SendClearAsync(WireMessage.Hello(_bridgeID, PeerRole.Bridge), cancellationToken).ConfigureAwait(false);
                 var storedKey = _sessionStore.Load(hello.PeerID);
@@ -140,8 +146,8 @@ internal sealed class BridgeClientSession : IAsyncDisposable
 
             default:
                 throw new InvalidDataException(_presentedClientID is null
-                    ? "Il client deve inviare hello per primo."
-                    : "Messaggio in chiaro non consentito.");
+                    ? LocalizedText.Choose("Il client deve inviare hello per primo.", "The client must send hello first.")
+                    : LocalizedText.Choose("Messaggio in chiaro non consentito.", "Clear-text message not allowed."));
         }
     }
 
@@ -174,14 +180,20 @@ internal sealed class BridgeClientSession : IAsyncDisposable
                 break;
 
             default:
-                throw new InvalidDataException("Messaggio cifrato non consentito.");
+                throw new InvalidDataException(LocalizedText.Choose(
+                    "Messaggio cifrato non consentito.",
+                    "Encrypted message not allowed."));
         }
     }
 
     private void RequireAuthenticated(Guid clientID)
     {
-        if (!_authenticated) throw new InvalidDataException("Heartbeat cifrato richiesto prima dei comandi.");
-        if (clientID != ClientID) throw new InvalidDataException("Identità client non valida.");
+        if (!_authenticated) throw new InvalidDataException(LocalizedText.Choose(
+            "Heartbeat cifrato richiesto prima dei comandi.",
+            "An encrypted heartbeat is required before commands."));
+        if (clientID != ClientID) throw new InvalidDataException(LocalizedText.Choose(
+            "Identità client non valida.",
+            "Invalid client identity."));
     }
 
     private Task SendHeartbeatAsync(CancellationToken cancellationToken)
@@ -189,7 +201,9 @@ internal sealed class BridgeClientSession : IAsyncDisposable
         EncryptedPacket packet;
         lock (_channelGate)
         {
-            if (_secureChannel is null) throw new InvalidDataException("Canale cifrato assente.");
+            if (_secureChannel is null) throw new InvalidDataException(LocalizedText.Choose(
+                "Canale cifrato assente.",
+                "Encrypted channel is unavailable."));
             packet = _secureChannel.Seal(WireMessage.Heartbeat(_secureChannel.NextSendingSequence));
         }
         var payload = JsonSerializer.SerializeToUtf8Bytes(packet, ProtocolJson.Options);
@@ -204,7 +218,9 @@ internal sealed class BridgeClientSession : IAsyncDisposable
         EncryptedPacket packet;
         lock (_channelGate)
         {
-            if (_secureChannel is null) throw new InvalidDataException("Canale cifrato assente.");
+            if (_secureChannel is null) throw new InvalidDataException(LocalizedText.Choose(
+                "Canale cifrato assente.",
+                "Encrypted channel is unavailable."));
             packet = _secureChannel.Seal(message);
         }
         var payload = JsonSerializer.SerializeToUtf8Bytes(packet, ProtocolJson.Options);

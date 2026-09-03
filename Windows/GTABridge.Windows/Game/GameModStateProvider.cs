@@ -34,7 +34,9 @@ internal sealed class GameModStateProvider(Func<string?> gameDirectory)
     private void WriteRequest(string action, bool enabled)
     {
         if (!CurrentState().IsDirectControlReady)
-            throw new InvalidOperationException("La modalità diretta non è pronta. Avvia GTA V in modalità Storia.");
+            throw new InvalidOperationException(LocalizedText.Choose(
+                "La modalità diretta non è pronta. Avvia GTA V in modalità Storia.",
+                "Direct mode is not ready. Start GTA V in Story Mode."));
         var directory = gameDirectory()!;
         var contents = $"version=1\nrequestID={Guid.NewGuid()}\naction={action}\nenabled={(enabled ? 1 : 0)}\n";
         var path = Path.Combine(directory, "GTARemoteBridge.command");

@@ -1,5 +1,5 @@
 param(
-    [string]$Version = "0.3.0",
+    [string]$Version = "0.3.1",
     [string]$OutputDirectory = (Join-Path $env:USERPROFILE "Downloads\GodMode Mod Remote Control Windows"),
     [string]$MingwBin = "C:\msys64\mingw64\bin",
     [string]$InnoSetupCompiler = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe",
@@ -52,12 +52,14 @@ dotnet publish $project `
     -c Release `
     -r win-x64 `
     --self-contained true `
+    -p:Version=$Version `
     -p:PublishSingleFile=true `
     -p:IncludeNativeLibrariesForSelfExtract=true `
     -p:DebugType=None `
     -o $publishDirectory
 
 Copy-Item (Join-Path $repositoryRoot "Windows\README.md") $publishDirectory
+Copy-Item (Join-Path $repositoryRoot "Windows\README.it.md") $publishDirectory
 
 if ($PrebuiltModBinary -ne "") {
     Copy-Item $PrebuiltModBinary $modBinary

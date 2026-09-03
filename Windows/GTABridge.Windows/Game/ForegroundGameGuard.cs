@@ -9,17 +9,25 @@ internal sealed class ForegroundGameGuard(Func<string?> gameDirectory)
     public void Validate()
     {
         var window = GetForegroundWindow();
-        if (window == IntPtr.Zero) throw new InvalidOperationException("Nessuna applicazione è in primo piano.");
+        if (window == IntPtr.Zero) throw new InvalidOperationException(LocalizedText.Choose(
+            "Nessuna applicazione è in primo piano.",
+            "No application is in the foreground."));
         _ = GetWindowThreadProcessId(window, out var processID);
-        if (processID == 0) throw new Win32Exception("Impossibile identificare il processo in primo piano.");
+        if (processID == 0) throw new Win32Exception(LocalizedText.Choose(
+            "Impossibile identificare il processo in primo piano.",
+            "The foreground process could not be identified."));
 
         using var process = Process.GetProcessById((int)processID);
         if (!string.Equals(process.ProcessName, "GTA5", StringComparison.OrdinalIgnoreCase))
-            throw new InvalidOperationException("GTA V non è l'applicazione in primo piano.");
+            throw new InvalidOperationException(LocalizedText.Choose(
+                "GTA V non è l'applicazione in primo piano.",
+                "GTA V is not the foreground application."));
 
         var configuredDirectory = gameDirectory();
         if (string.IsNullOrWhiteSpace(configuredDirectory))
-            throw new InvalidOperationException("Seleziona prima la cartella di GTA V dal menu del bridge.");
+            throw new InvalidOperationException(LocalizedText.Choose(
+                "Seleziona prima la cartella di GTA V dal menu del bridge.",
+                "Choose the GTA V folder from the bridge menu first."));
 
         string? executablePath;
         try
@@ -32,7 +40,9 @@ internal sealed class ForegroundGameGuard(Func<string?> gameDirectory)
         }
 
         if (executablePath is null || !IsInside(executablePath, configuredDirectory))
-            throw new InvalidOperationException("Il processo GTA in primo piano non appartiene alla cartella autorizzata.");
+            throw new InvalidOperationException(LocalizedText.Choose(
+                "Il processo GTA in primo piano non appartiene alla cartella autorizzata.",
+                "The foreground GTA process is not inside the authorized folder."));
     }
 
     private static bool IsInside(string file, string directory)

@@ -1,5 +1,7 @@
 # GodMode Mod Remote Control
 
+[Italiano](README.it.md) | English
+
 GodMode Mod Remote Control is a local, two-part remote control for GTA V Legacy Story Mode. Your iPhone is the controller. GodMode Mod Remote Control is the Windows tray app or Mac menu-bar app that connects the phone to the game.
 
 It is for personal, offline use on your own Wi-Fi network. It does not support GTA Online.
@@ -30,8 +32,8 @@ Do not download an IPA from GitHub. TestFlight is the normal and supported iPhon
 
 ## Install GodMode Mod Remote Control on Windows
 
-1. Open the [v0.3.0 release page](../../releases/tag/v0.3.0).
-2. Under Assets, download `Windows-GodMode-Mod-Remote-Control-Setup-v0.3.0.exe`.
+1. Open the [v0.3.1 release page](https://github.com/themattvision/GTA-V-Remote-Control-God-Mode-Mod/releases/tag/v0.3.1).
+2. Under Assets, download `Windows-GodMode-Mod-Remote-Control-Setup-v0.3.1.exe`.
 3. Close GTA V completely, then start the setup.
 4. Confirm or select the folder containing `GTA5.exe`.
 5. If ScriptHook V is missing, use the official download link shown by the setup, download its ZIP, then select that ZIP. Do not extract it or copy files manually.
@@ -39,14 +41,14 @@ Do not download an IPA from GitHub. TestFlight is the normal and supported iPhon
 
 The guided setup installs GodMode Mod Remote Control, the included `GTARemoteBridge.asi` mod, the official ScriptHook files selected by the user, autostart, and the private-network firewall rule. It backs up files before replacing them and removes only our mod during uninstall. ScriptHook V cannot be bundled or downloaded automatically because its author forbids redistribution, so that official download is the only separate step.
 
-The app lives in the Windows notification area. Its name is GodMode Mod Remote Control. GTA Remote is only the iPhone controller. The current Windows build is not code-signed, so SmartScreen may show a warning. Do not disable SmartScreen globally.
+The app lives in the Windows notification area. Its name is GodMode Mod Remote Control. GTA Remote is only the iPhone controller. The setup and app use Italian when Windows is set to Italian, and English otherwise. The current Windows build is not code-signed, so SmartScreen may show a warning. Do not disable SmartScreen globally.
 
-See the [Windows installation and safety guide](Windows/README.md) for the complete procedure.
+See the [Windows installation and safety guide](Windows/README.md) for the complete procedure, also [available in Italian](Windows/README.it.md).
 
 ## Install GodMode Mod Remote Control on the Mac
 
-1. Open the [v0.3.0 release page](../../releases/tag/v0.3.0).
-2. Under Assets, download `Mac-GodMode-Mod-Remote-Control-v0.3.0.dmg`.
+1. Open the [v0.3.1 release page](https://github.com/themattvision/GTA-V-Remote-Control-God-Mode-Mod/releases/tag/v0.3.1).
+2. Under Assets, download `Mac-GodMode-Mod-Remote-Control-v0.3.1.dmg`.
 3. Open the downloaded DMG file in Finder.
 4. Double-click `1. START HERE.html` first. It shows the complete Mac, iPhone, permissions, Wi-Fi, and pairing guide in the right order.
 5. Drag GodMode Mod Remote Control onto the Applications folder shown in the installation window.

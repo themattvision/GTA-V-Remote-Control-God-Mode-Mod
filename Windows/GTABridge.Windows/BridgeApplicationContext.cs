@@ -27,13 +27,13 @@ internal sealed class BridgeApplicationContext : ApplicationContext
         var mod = new GameModStateProvider(() => _settings.GameDirectory);
         _server = new BridgeServer(_settings.BridgeID, new ProtectedSessionStore(), input, mod);
 
-        _statusItem = new ToolStripMenuItem("Avvio…") { Enabled = false };
-        _pairingItem = new ToolStripMenuItem("Codice pairing") { Enabled = false, Visible = false };
-        _approveItem = new ToolStripMenuItem("Approva pairing", null, ResolvePairing) { Tag = true, Visible = false };
-        _rejectItem = new ToolStripMenuItem("Rifiuta pairing", null, ResolvePairing) { Tag = false, Visible = false };
-        var chooseDirectory = new ToolStripMenuItem("Seleziona cartella GTA V…", null, ChooseGameDirectory);
-        var testTrainer = new ToolStripMenuItem("Test F4 tra 3 secondi", null, TestTrainer);
-        var exit = new ToolStripMenuItem("Esci", null, Exit);
+        _statusItem = new ToolStripMenuItem(LocalizedText.Choose("Avvio…", "Starting…")) { Enabled = false };
+        _pairingItem = new ToolStripMenuItem(LocalizedText.Choose("Codice pairing", "Pairing code")) { Enabled = false, Visible = false };
+        _approveItem = new ToolStripMenuItem(LocalizedText.Choose("Approva pairing", "Approve pairing"), null, ResolvePairing) { Tag = true, Visible = false };
+        _rejectItem = new ToolStripMenuItem(LocalizedText.Choose("Rifiuta pairing", "Reject pairing"), null, ResolvePairing) { Tag = false, Visible = false };
+        var chooseDirectory = new ToolStripMenuItem(LocalizedText.Choose("Seleziona cartella GTA V…", "Choose GTA V folder…"), null, ChooseGameDirectory);
+        var testTrainer = new ToolStripMenuItem(LocalizedText.Choose("Test F4 tra 3 secondi", "Test F4 in 3 seconds"), null, TestTrainer);
+        var exit = new ToolStripMenuItem(LocalizedText.Choose("Esci", "Exit"), null, Exit);
         var menu = new ContextMenuStrip();
         menu.Items.AddRange([
             _statusItem,
@@ -66,7 +66,7 @@ internal sealed class BridgeApplicationContext : ApplicationContext
         }
         catch (Exception error)
         {
-            SetStatus($"Avvio fallito: {error.Message}");
+            SetStatus($"{LocalizedText.Choose("Avvio fallito", "Startup failed")}: {error.Message}");
             MessageBox.Show(error.Message, "GodMode Mod Remote Control", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
@@ -75,7 +75,7 @@ internal sealed class BridgeApplicationContext : ApplicationContext
     {
         using var dialog = new FolderBrowserDialog
         {
-            Description = "Seleziona la cartella che contiene GTA5.exe",
+            Description = LocalizedText.Choose("Seleziona la cartella che contiene GTA5.exe", "Choose the folder containing GTA5.exe"),
             UseDescriptionForTitle = true,
             SelectedPath = _settings.GameDirectory ?? string.Empty,
         };
@@ -83,7 +83,7 @@ internal sealed class BridgeApplicationContext : ApplicationContext
         if (!GameInstallationLocator.IsValid(dialog.SelectedPath))
         {
             MessageBox.Show(
-                "La cartella scelta non contiene GTA5.exe.",
+                LocalizedText.Choose("La cartella scelta non contiene GTA5.exe.", "The selected folder does not contain GTA5.exe."),
                 "GodMode Mod Remote Control",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Warning);
@@ -91,23 +91,23 @@ internal sealed class BridgeApplicationContext : ApplicationContext
         }
         _settings = _settings with { GameDirectory = dialog.SelectedPath };
         _settingsStore.Save(_settings);
-        SetStatus("Cartella GTA V verificata");
+        SetStatus(LocalizedText.Choose("Cartella GTA V verificata", "GTA V folder verified"));
     }
 
     private async void TestTrainer(object? sender, EventArgs eventArgs)
     {
         try
         {
-            SetStatus("Porta GTA V in primo piano, test fra 3 secondi");
+            SetStatus(LocalizedText.Choose("Porta GTA V in primo piano, test fra 3 secondi", "Bring GTA V to the foreground, testing in 3 seconds"));
             await Task.Delay(TimeSpan.FromSeconds(3));
             var input = new TrainerInputInjector(new ForegroundGameGuard(() => _settings.GameDirectory));
             await input.InjectAsync(TrainerCommand.ToggleTrainer);
-            SetStatus("F4 inviato a GTA V");
+            SetStatus(LocalizedText.Choose("F4 inviato a GTA V", "F4 sent to GTA V"));
         }
         catch (Exception error)
         {
             SetStatus(error.Message);
-            MessageBox.Show(error.Message, "Test trainer", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(error.Message, LocalizedText.Choose("Test trainer", "Trainer test"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 
@@ -133,7 +133,7 @@ internal sealed class BridgeApplicationContext : ApplicationContext
 
     private void ShowPairing(uint fingerprint)
     {
-        _pairingItem.Text = $"Codice: {fingerprint:000000}";
+        _pairingItem.Text = $"{LocalizedText.Choose("Codice", "Code")}: {fingerprint:000000}";
         _pairingItem.Visible = true;
         _approveItem.Visible = true;
         _rejectItem.Visible = true;

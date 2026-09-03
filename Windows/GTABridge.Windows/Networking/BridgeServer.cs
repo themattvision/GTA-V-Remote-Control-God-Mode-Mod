@@ -52,7 +52,7 @@ internal sealed class BridgeServer : IAsyncDisposable
         _listener.Start();
         var port = ((IPEndPoint)_listener.LocalEndpoint).Port;
         _advertiser.Start(port);
-        StatusChanged?.Invoke($"In ascolto, porta {port}");
+        StatusChanged?.Invoke($"{LocalizedText.Choose("In ascolto, porta", "Listening on port")} {port}");
         _ = AcceptLoopAsync(_lifetime.Token);
         _ = StateLoopAsync(_lifetime.Token);
     }
@@ -62,7 +62,9 @@ internal sealed class BridgeServer : IAsyncDisposable
         await _pairingGate.WaitAsync().ConfigureAwait(false);
         try
         {
-            var pending = _pendingPairing ?? throw new InvalidOperationException("Non c'è un pairing da approvare.");
+            var pending = _pendingPairing ?? throw new InvalidOperationException(LocalizedText.Choose(
+                "Non c'è un pairing da approvare.",
+                "There is no pairing request to approve."));
             var approval = new PairingApproval(ProtocolConstants.Version, pending.ClientID, _bridgeID, approved);
             if (approved)
             {
@@ -78,12 +80,14 @@ internal sealed class BridgeServer : IAsyncDisposable
                     throw;
                 }
                 _rateLimiters[pending.ClientID] = new RateLimiter();
-                StatusChanged?.Invoke("Pairing approvato, attendo l'autenticazione cifrata");
+                StatusChanged?.Invoke(LocalizedText.Choose(
+                    "Pairing approvato, attendo l'autenticazione cifrata",
+                    "Pairing approved, waiting for encrypted authentication"));
             }
             else
             {
                 await pending.Session.SendPairingApprovalAsync(approval, _lifetime?.Token ?? default).ConfigureAwait(false);
-                StatusChanged?.Invoke("Pairing rifiutato");
+                StatusChanged?.Invoke(LocalizedText.Choose("Pairing rifiutato", "Pairing rejected"));
             }
             ClearPendingPairing();
         }
@@ -93,12 +97,16 @@ internal sealed class BridgeServer : IAsyncDisposable
         }
     }
 
-    internal void OnPairingNeeded() => StatusChanged?.Invoke("iPhone rilevato, pairing necessario");
+    internal void OnPairingNeeded() => StatusChanged?.Invoke(LocalizedText.Choose(
+        "iPhone rilevato, pairing necessario",
+        "iPhone detected, pairing required"));
 
     internal void OnAuthenticating(Guid clientID)
     {
         _rateLimiters[clientID] = new RateLimiter();
-        StatusChanged?.Invoke("iPhone noto, attendo l'autenticazione cifrata");
+        StatusChanged?.Invoke(LocalizedText.Choose(
+            "iPhone noto, attendo l'autenticazione cifrata",
+            "Known iPhone, waiting for encrypted authentication"));
     }
 
     internal async Task RequestPairingAsync(
@@ -109,7 +117,9 @@ internal sealed class BridgeServer : IAsyncDisposable
         await _pairingGate.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {
-            if (_pendingPairing is not null) throw new InvalidOperationException("È già presente una richiesta di pairing.");
+            if (_pendingPairing is not null) throw new InvalidOperationException(LocalizedText.Choose(
+                "È già presente una richiesta di pairing.",
+                "A pairing request is already pending."));
             var keyPair = new PairingKeyPair();
             PendingPairing? pending = null;
             try
@@ -125,7 +135,9 @@ internal sealed class BridgeServer : IAsyncDisposable
                 _pendingPairing = pending;
                 await session.SendPairingChallengeAsync(challenge, cancellationToken).ConfigureAwait(false);
                 PairingRequested?.Invoke(request.ClientID, fingerprint);
-                StatusChanged?.Invoke("Confronta il codice e approva il pairing");
+                StatusChanged?.Invoke(LocalizedText.Choose(
+                    "Confronta il codice e approva il pairing",
+                    "Compare the code and approve pairing"));
             }
             catch
             {
@@ -147,7 +159,7 @@ internal sealed class BridgeServer : IAsyncDisposable
         Guid clientID,
         CancellationToken cancellationToken)
     {
-        StatusChanged?.Invoke($"iPhone connesso, {clientID.ToString()[..8]}");
+        StatusChanged?.Invoke($"{LocalizedText.Choose("iPhone connesso", "iPhone connected")}, {clientID.ToString()[..8]}");
         await session.SendTrainerStateAsync(_lastState, cancellationToken).ConfigureAwait(false);
     }
 
@@ -192,7 +204,7 @@ internal sealed class BridgeServer : IAsyncDisposable
             try
             {
                 await action().ConfigureAwait(false);
-                Diagnostic?.Invoke("Comando eseguito");
+                Diagnostic?.Invoke(LocalizedText.Choose("Comando eseguito", "Command executed"));
             }
             catch (Exception error) when (error is not OperationCanceledException)
             {
@@ -202,7 +214,9 @@ internal sealed class BridgeServer : IAsyncDisposable
         }
         else
         {
-            Diagnostic?.Invoke("Troppi comandi, richiesta rifiutata");
+            Diagnostic?.Invoke(LocalizedText.Choose(
+                "Troppi comandi, richiesta rifiutata",
+                "Too many commands, request rejected"));
         }
 
         await session.SendAcknowledgementAsync(
@@ -231,7 +245,7 @@ internal sealed class BridgeServer : IAsyncDisposable
         }
         catch (Exception error)
         {
-            StatusChanged?.Invoke($"Errore listener: {error.Message}");
+            StatusChanged?.Invoke($"{LocalizedText.Choose("Errore listener", "Listener error")}: {error.Message}");
         }
     }
 
@@ -246,7 +260,7 @@ internal sealed class BridgeServer : IAsyncDisposable
         }
         catch (Exception error)
         {
-            Diagnostic?.Invoke($"Connessione rifiutata: {error.Message}");
+            Diagnostic?.Invoke($"{LocalizedText.Choose("Connessione rifiutata", "Connection rejected")}: {error.Message}");
         }
         finally
         {
@@ -262,7 +276,7 @@ internal sealed class BridgeServer : IAsyncDisposable
             }
             await session.DisposeAsync().ConfigureAwait(false);
             if (!_sessions.Values.Any(value => value.IsAuthenticated))
-                StatusChanged?.Invoke("In ascolto sulla rete locale");
+                StatusChanged?.Invoke(LocalizedText.Choose("In ascolto sulla rete locale", "Listening on the local network"));
         }
     }
 
@@ -281,7 +295,7 @@ internal sealed class BridgeServer : IAsyncDisposable
                         try { await session.SendTrainerStateAsync(snapshot, cancellationToken).ConfigureAwait(false); }
                         catch (Exception error) when (error is not OperationCanceledException)
                         {
-                            Diagnostic?.Invoke($"Stato non inviato: {error.Message}");
+                            Diagnostic?.Invoke($"{LocalizedText.Choose("Stato non inviato", "State not sent")}: {error.Message}");
                         }
                     }
                 }
