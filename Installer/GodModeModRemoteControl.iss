@@ -128,7 +128,9 @@ begin
     'Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders',
     '{374DE290-123F-4565-9164-39C4925E467B}', Result) then
     Result := AddBackslash(GetEnv('USERPROFILE')) + 'Downloads';
-  Result := ExpandEnvironmentStrings(Result);
+  StringChangeEx(Result, '%USERPROFILE%', GetEnv('USERPROFILE'), True);
+  StringChangeEx(Result, '%HOMEDRIVE%', GetEnv('HOMEDRIVE'), True);
+  StringChangeEx(Result, '%HOMEPATH%', GetEnv('HOMEPATH'), True);
 end;
 
 function FindDownloadedScriptHook: String;
