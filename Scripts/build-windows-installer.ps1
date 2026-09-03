@@ -54,12 +54,14 @@ dotnet publish $project `
 
 Copy-Item (Join-Path $repositoryRoot "Windows\README.md") $publishDirectory
 
-& $dllTool `
+$dllToolOutput = & $dllTool `
     -d (Join-Path $modSourceDirectory "ScriptHookV.def") `
-    -l $importLibrary
-if ($LASTEXITCODE -ne 0) { throw "Creazione import library ScriptHook V fallita." }
+    -l $importLibrary 2>&1
+$dllToolExitCode = $LASTEXITCODE
+$dllToolOutput | Write-Host
+if ($dllToolExitCode -ne 0) { throw "Creazione import library ScriptHook V fallita con codice $dllToolExitCode." }
 
-& $compiler `
+$compilerOutput = & $compiler `
     -std=c++17 `
     -O2 `
     -shared `
@@ -68,9 +70,10 @@ if ($LASTEXITCODE -ne 0) { throw "Creazione import library ScriptHook V fallita.
     -o $modBinary `
     (Join-Path $modSourceDirectory "GTARemoteBridge.cpp") `
     $importLibrary `
-    "-Wl,--subsystem,windows" `
-    "-Wl,--kill-at"
-if ($LASTEXITCODE -ne 0) { throw "Build di GTARemoteBridge.asi fallita." }
+    "-Wl,--subsystem,windows" 2>&1
+$compilerExitCode = $LASTEXITCODE
+$compilerOutput | Write-Host
+if ($compilerExitCode -ne 0) { throw "Build di GTARemoteBridge.asi fallita con codice $compilerExitCode." }
 
 & $InnoSetupCompiler `
     "/DAppVersion=$Version" `
