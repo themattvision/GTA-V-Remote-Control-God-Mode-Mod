@@ -1,6 +1,6 @@
-# GTA Remote
+# GTA V Remote Control, God Mode Companion Mod
 
-GTA Remote is a local, two-part remote control for GTA V Legacy Story Mode. Your iPhone is the controller. GTA Remote Control is the Mac menu-bar app that connects the phone to the game.
+GTA V Remote Control, God Mode Companion Mod is a local, two-part remote control for GTA V Legacy Story Mode. Your iPhone is the controller. GTA Remote Control is the Mac menu-bar app that connects the phone to the game.
 
 It is for personal, offline use on your own Wi-Fi network. It does not support GTA Online.
 
